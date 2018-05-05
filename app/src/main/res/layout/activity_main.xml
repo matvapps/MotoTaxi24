@@ -5,39 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F7F7"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_gravity="center"
         android:layout_marginEnd="24dp"
-        android:layout_gravity="center">
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button_dispatcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/yellow_round_btn_background"
             android:layout_marginBottom="8dp"
-            tools:text="Диспетчер"/>
+            android:background="@drawable/yellow_round_btn_background"
+            android:textAllCaps="false"
+            tools:text="Диспетчер" />
 
         <Button
             android:id="@+id/button_driver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/yellow_round_btn_background"
-            tools:text="Водитель"/>
-
+            android:textAllCaps="false"
+            tools:text="Водитель" />
 
 
     </LinearLayout>
-
-
-
 
 
 </FrameLayout>

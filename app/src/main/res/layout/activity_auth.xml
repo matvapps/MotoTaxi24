@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="agency.yad.mototaxi24.auth.AuthActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingLeft="32dp"
+        android:layout_marginBottom="40dp"
+        android:paddingRight="32dp">
+
+        <EditText
+            android:id="@+id/email_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="Логин"
+            android:background="@drawable/round_stroke_edtxt_background"/>
+
+        <EditText
+            android:id="@+id/password_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:inputType="textPassword"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="Пароль"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:background="@drawable/round_stroke_edtxt_background"/>
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginRight="16dp"
+            android:textAllCaps="false"
+            android:background="@drawable/yellow_round_btn_background"
+            android:text="Войти"/>
+
+    </LinearLayout>
+
+
+</FrameLayout>
