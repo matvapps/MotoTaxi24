@@ -1,7 +1,9 @@
 package agency.yad.mototaxi24.auth;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
+import agency.yad.mototaxi24.model.response.AuthResponse;
 import agency.yad.mototaxi24.network.NetworkClient;
 import agency.yad.mototaxi24.network.NetworkInterface;
 import agency.yad.mototaxi24.base.Presenter;
@@ -33,6 +35,7 @@ public class AuthPresenter implements Presenter<AuthView> {
     }
 
 
+    @SuppressLint("CheckResult")
     public void tryAuth(String email, String password) {
         getObservable(email, password).subscribeWith(getObserver());
     }

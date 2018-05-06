@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.MainActivity"
-            android:label="Главная">
+            android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.AuthActivity" />
-        <activity android:name=".dispatcher.DispatcherMainActivity"></activity>
+        <activity android:name=".dispatcher.DispatcherMainActivity" />
+        <activity android:name=".order.NewOrderActivity" />
+        <activity android:name=".orderlist.OrderListActivity" />
     </application>
 
 </manifest>

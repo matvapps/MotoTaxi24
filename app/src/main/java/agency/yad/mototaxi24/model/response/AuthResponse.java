@@ -1,4 +1,4 @@
-package agency.yad.mototaxi24.auth;
+package agency.yad.mototaxi24.model.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,15 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Alexandr
  */
 
-public class AuthResponse {
-
-    @SerializedName("code")
-    @Expose
-    private Integer code;
-
-    @SerializedName("message")
-    @Expose
-    private String message;
+public class AuthResponse extends BaseResponse {
 
     @SerializedName("token")
     @Expose
@@ -31,21 +23,6 @@ public class AuthResponse {
         this.token = token;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public String getToken() {
         return token;

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order.NewOrderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp">
+
+            <TextView
+                android:id="@+id/client_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Имя клиента:"
+                app:layout_constraintStart_toStartOf="@+id/client_name_edtxt"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/client_name_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/client_name_title" />
+
+
+            <TextView
+                android:id="@+id/client_phone_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Телефон клиента:"
+                app:layout_constraintStart_toStartOf="@+id/client_phone_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/client_name_edtxt" />
+
+            <EditText
+                android:id="@+id/client_phone_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/client_phone_title" />
+
+            <TextView
+                android:id="@+id/arrival_time_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Время подачи мото:"
+                app:layout_constraintStart_toStartOf="@+id/arrival_time_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/client_phone_edtxt" />
+
+            <EditText
+                android:id="@+id/arrival_time_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arrival_time_title" />
+
+
+            <TextView
+                android:id="@+id/address_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Адрес:"
+                app:layout_constraintStart_toStartOf="@+id/address_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/arrival_time_edtxt" />
+
+            <EditText
+                android:id="@+id/address_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_title" />
+
+            <TextView
+                android:id="@+id/moto_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Тип мотоцикла:"
+                app:layout_constraintStart_toStartOf="@+id/moto_type_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/address_edtxt" />
+
+            <EditText
+                android:id="@+id/moto_type_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/moto_type_title" />
+
+
+            <TextView
+                android:id="@+id/passenger_weight_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Вес пассажира:"
+                app:layout_constraintStart_toStartOf="@+id/passenger_weight_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/moto_type_edtxt" />
+
+            <EditText
+                android:id="@+id/passenger_weight_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passenger_weight_title" />
+
+
+            <TextView
+                android:id="@+id/service_cost_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Стоимость услуги с %:"
+                app:layout_constraintStart_toStartOf="@+id/service_cost_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/passenger_weight_edtxt" />
+
+            <EditText
+                android:id="@+id/service_cost_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/service_cost_title" />
+
+            <TextView
+                android:id="@+id/human_quant_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Количество людей:"
+                app:layout_constraintStart_toStartOf="@+id/human_quant_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/service_cost_edtxt" />
+
+            <EditText
+                android:id="@+id/human_quant_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/human_quant_title" />
+
+
+            <TextView
+                android:id="@+id/additional_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Дополнительная информация:"
+                app:layout_constraintStart_toStartOf="@+id/additional_info_edtxt"
+                app:layout_constraintTop_toBottomOf="@id/human_quant_edtxt" />
+
+            <EditText
+                android:id="@+id/additional_info_edtxt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_stroke_edtxt_background"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/additional_info_title" />
+
+
+            <Button
+                android:id="@+id/send_btn"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/yellow_round_btn_background"
+                android:text="Отправить"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/additional_info_edtxt" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>

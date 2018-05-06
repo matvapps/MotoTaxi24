@@ -2,7 +2,6 @@ package agency.yad.mototaxi24.auth;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,9 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import agency.yad.mototaxi24.R;
+import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
+import agency.yad.mototaxi24.model.response.AuthResponse;
 
-public class AuthActivity extends AppCompatActivity implements AuthView {
+public class AuthActivity extends BaseActivity implements AuthView {
 
     private final String TAG = AuthActivity.class.getSimpleName();
 
@@ -30,16 +31,20 @@ public class AuthActivity extends AppCompatActivity implements AuthView {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+    protected boolean getUseArrowBack() {
+        return true;
+    }
 
+    @Override
+    protected String getToolbarTitle() {
+        return "Авторизация";
+    }
+
+    @Override
+    protected void initViews() {
         emailEditText = findViewById(R.id.email_edtxt);
         passwordEditText = findViewById(R.id.password_edtxt);
         submit = findViewById(R.id.submit_btn);
-
-        authPresenter = new AuthPresenter();
-        authPresenter.attachView(this);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +54,19 @@ public class AuthActivity extends AppCompatActivity implements AuthView {
                         passwordEditText.getText().toString());
             }
         });
+    }
 
+    @Override
+    protected int getContentViewLayoutId() {
+        return R.layout.activity_auth;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        authPresenter = new AuthPresenter();
+        authPresenter.attachView(this);
     }
 
     @Override
@@ -68,7 +85,9 @@ public class AuthActivity extends AppCompatActivity implements AuthView {
         
         switch (authResponse.getCode()) {
             case 0: {
+                keyValueStorage.setIsLogIn(true);
                 DispatcherMainActivity.start(AuthActivity.this);
+                finish();
                 break;
             }
             

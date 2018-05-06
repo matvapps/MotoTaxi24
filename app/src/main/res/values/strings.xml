@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MotoTaxi24</string>
+    <string name="dispatcher_btn_str">Диспетчер</string>
+    <string name="driver_btn_str">Водитель</string>
 </resources>

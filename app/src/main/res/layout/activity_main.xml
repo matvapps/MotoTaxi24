@@ -24,7 +24,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/yellow_round_btn_background"
             android:textAllCaps="false"
-            tools:text="Диспетчер" />
+            android:text="@string/dispatcher_btn_str" />
 
         <Button
             android:id="@+id/button_driver"
@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/yellow_round_btn_background"
             android:textAllCaps="false"
-            tools:text="Водитель" />
+            android:layout_marginBottom="3dp"
+            android:text="@string/driver_btn_str" />
 
 
     </LinearLayout>
