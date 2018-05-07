@@ -1,4 +1,4 @@
-package agency.yad.mototaxi24.dispatcher;
+package agency.yad.mototaxi24.driver;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,15 +8,13 @@ import android.widget.Button;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
+import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
 import agency.yad.mototaxi24.main.MainActivity;
-import agency.yad.mototaxi24.order.NewOrderActivity;
-import agency.yad.mototaxi24.orderlist.OrderListActivity;
 
-public class DispatcherMainActivity extends BaseActivity implements View.OnClickListener {
+public class DriverMainActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button newOrderBtn;
     private Button activeOrdersBtn;
-    private Button historyOrdersBtn;
+    private Button myOrdersBtn;
     private Button logoutBtn;
     private Button changeModeBtn;
 
@@ -38,22 +36,20 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initViews() {
-        newOrderBtn = findViewById(R.id.new_order_btn);
         activeOrdersBtn = findViewById(R.id.active_order_btn);
-        historyOrdersBtn = findViewById(R.id.order_history_btn);
+        myOrdersBtn = findViewById(R.id.order_history_btn);
         logoutBtn = findViewById(R.id.log_out_btn);
         changeModeBtn = findViewById(R.id.change_mode_btn);
 
-        newOrderBtn.setOnClickListener(this);
         activeOrdersBtn.setOnClickListener(this);
-        historyOrdersBtn.setOnClickListener(this);
+        myOrdersBtn.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
         changeModeBtn.setOnClickListener(this);
     }
 
     @Override
     protected int getContentViewLayoutId() {
-        return R.layout.activity_dispatcher_main;
+        return R.layout.activity_driver_main;
     }
 
     @Override
@@ -64,16 +60,12 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.new_order_btn: {
-                NewOrderActivity.start(this);
-                break;
-            }
             case R.id.active_order_btn: {
 
                 break;
             }
-            case R.id.order_history_btn: {
-                OrderListActivity.start(this, OrderListActivity.ORDERS_HISTORY);
+            case R.id.my_orders_btn: {
+
                 break;
             }
             case R.id.log_out_btn: {

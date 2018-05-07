@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    tools:context="agency.yad.mototaxi24.driver.DriverMainActivity">
+
+
+    <Button
+        android:id="@+id/active_order_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textAllCaps="false"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Активные заказы"/>
+
+    <Button
+        android:id="@+id/my_orders_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textAllCaps="false"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Мои заказы"/>
+
+    <Button
+        android:id="@+id/log_out_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textAllCaps="false"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Выйти"/>
+
+    <Button
+        android:id="@+id/change_mode_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Сменить режим"/>
+
+
+</LinearLayout>

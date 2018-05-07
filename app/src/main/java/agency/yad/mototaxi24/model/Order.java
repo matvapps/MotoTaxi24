@@ -1,7 +1,5 @@
 package agency.yad.mototaxi24.model;
 
-import android.support.annotation.WorkerThread;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,27 +15,27 @@ public class Order {
 
     @SerializedName("name")
     @Expose
-    private Integer name;
+    private String name;
 
     @SerializedName("phone")
     @Expose
-    private Integer phone;
+    private String phone;
 
     @SerializedName("order_datetime")
     @Expose
-    private Integer order_datetime;
+    private String order_datetime;
 
     @SerializedName("order_time")
     @Expose
-    private Integer order_time;
+    private String order_time;
 
     @SerializedName("address")
     @Expose
-    private Integer address;
+    private String address;
 
     @SerializedName("bike_type")
     @Expose
-    private Integer bike_type;
+    private String bike_type;
 
     @SerializedName("weight")
     @Expose
@@ -45,7 +43,7 @@ public class Order {
 
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private Float price;
 
     @SerializedName("amount_clients")
     @Expose
@@ -53,19 +51,19 @@ public class Order {
 
     @SerializedName("additional_info")
     @Expose
-    private Integer additional_info;
+    private String additional_info;
 
     @SerializedName("status")
     @Expose
-    private Integer status;
+    private String status;
 
     @SerializedName("created_at")
     @Expose
-    private Integer created_at;
+    private String created_at;
 
     @SerializedName("updated_at")
     @Expose
-    private Integer updated_at;
+    private String updated_at;
 
     @SerializedName("driver_fio")
     @Expose
@@ -87,9 +85,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer id, Integer name, Integer phone, Integer order_datetime, Integer order_time,
-                 Integer address, Integer bike_type, Integer weight, Integer price, Integer amount_clients,
-                 Integer additional_info, Integer status, Integer created_at, Integer updated_at) {
+    public Order(Integer id, String name, String phone, String order_datetime, String order_time,
+                 String address, String bike_type, Integer weight, Float price, Integer amount_clients,
+                 String additional_info, String status, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -106,9 +104,9 @@ public class Order {
         this.updated_at = updated_at;
     }
 
-    public Order(Integer id, Integer name, Integer phone, Integer order_datetime, Integer order_time,
-                 Integer address, Integer bike_type, Integer weight, Integer price, Integer amount_clients,
-                 Integer additional_info, Integer status, Integer created_at, Integer updated_at,
+    public Order(Integer id, String name, String phone, String order_datetime, String order_time,
+                 String address, String bike_type, Integer weight, Float price, Integer amount_clients,
+                 String additional_info, String status, String created_at, String updated_at,
                  String driverFio, String driverPhone, String driverBikeType, String driverBikeModel) {
         this.id = id;
         this.name = name;
@@ -138,51 +136,51 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Integer getOrder_datetime() {
+    public String getOrder_datetime() {
         return order_datetime;
     }
 
-    public void setOrder_datetime(Integer order_datetime) {
+    public void setOrder_datetime(String order_datetime) {
         this.order_datetime = order_datetime;
     }
 
-    public Integer getOrder_time() {
+    public String getOrder_time() {
         return order_time;
     }
 
-    public void setOrder_time(Integer order_time) {
+    public void setOrder_time(String order_time) {
         this.order_time = order_time;
     }
 
-    public Integer getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Integer address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public Integer getBike_type() {
+    public String getBike_type() {
         return bike_type;
     }
 
-    public void setBike_type(Integer bike_type) {
+    public void setBike_type(String bike_type) {
         this.bike_type = bike_type;
     }
 
@@ -194,11 +192,11 @@ public class Order {
         this.weight = weight;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -210,35 +208,35 @@ public class Order {
         this.amount_clients = amount_clients;
     }
 
-    public Integer getAdditional_info() {
+    public String getAdditional_info() {
         return additional_info;
     }
 
-    public void setAdditional_info(Integer additional_info) {
+    public void setAdditional_info(String additional_info) {
         this.additional_info = additional_info;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Integer getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Integer created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public Integer getUpdated_at() {
+    public String getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Integer updated_at) {
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
 

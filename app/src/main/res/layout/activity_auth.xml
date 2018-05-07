@@ -1,58 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_marginBottom="40dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
     tools:context="agency.yad.mototaxi24.auth.AuthActivity">
 
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/email_edtxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:paddingLeft="32dp"
-        android:layout_marginBottom="40dp"
-        android:paddingRight="32dp">
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_stroke_edtxt_background"
+        android:hint="Логин"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColorHint="@android:color/darker_gray" />
 
-        <EditText
-            android:id="@+id/email_edtxt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@android:color/darker_gray"
-            android:hint="Логин"
-            android:background="@drawable/round_stroke_edtxt_background"/>
+    <EditText
+        android:id="@+id/password_edtxt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/round_stroke_edtxt_background"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColorHint="@android:color/darker_gray" />
 
-        <EditText
-            android:id="@+id/password_edtxt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="12dp"
-            android:inputType="textPassword"
-            android:textColorHint="@android:color/darker_gray"
-            android:hint="Пароль"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:background="@drawable/round_stroke_edtxt_background"/>
-
-        <Button
-            android:id="@+id/submit_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginRight="16dp"
-            android:textAllCaps="false"
-            android:background="@drawable/yellow_round_btn_background"
-            android:text="Войти"/>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Войти"
+        android:textAllCaps="false" />
 
 
-</FrameLayout>
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/yellow_round_btn_background"
+        android:text="Регистрация"
+        android:textAllCaps="false"
+        android:visibility="gone" />
+
+</LinearLayout>
+

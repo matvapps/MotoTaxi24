@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order.NewOrderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
+
+
+        <LinearLayout
+            android:id="@+id/upload_your_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить ваше фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/upload_moto_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото мото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/client_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="ФИО:" />
+
+        <EditText
+            android:id="@+id/client_name_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/client_phone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Дата рождения:" />
+
+        <EditText
+            android:id="@+id/client_phone_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/arrival_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Телефон:" />
+
+        <EditText
+            android:id="@+id/arrival_time_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Email:" />
+
+        <EditText
+            android:id="@+id/address_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/moto_type_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Адрес проживания:" />
+
+        <EditText
+            android:id="@+id/moto_type_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/passenger_weight_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ближайшее метро:" />
+
+        <EditText
+            android:id="@+id/passenger_weight_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/service_cost_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Стаж вождения мотоцикла(с какого года):" />
+
+        <EditText
+            android:id="@+id/service_cost_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/human_quant_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Марка мотоцикла:" />
+
+        <EditText
+            android:id="@+id/human_quant_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/moto_model_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Модель мотоцикла:" />
+
+        <EditText
+            android:id="@+id/moto_model_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/additional_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Год выпуска мотоцикла:" />
+
+        <EditText
+            android:id="@+id/additional_info_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/moto_color_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Цвет мотоцикла:" />
+
+        <EditText
+            android:id="@+id/moto_color_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/registration_number_availability_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Наличие регистрациоонного знака:" />
+
+        <EditText
+            android:id="@+id/registration_number_availability_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/insurance_availability_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Наличие страховки и талона ТО:" />
+
+        <EditText
+            android:id="@+id/insurance_availability_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/trunk_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Наличие вещей для пассажира:" />
+
+        <EditText
+            android:id="@+id/trunk_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/required_passenger_weight_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Предпочтительный вес пассажира:" />
+
+        <EditText
+            android:id="@+id/required_passenger_weight_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/recording_devices_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Наличие фото и видео устройств:" />
+
+        <EditText
+            android:id="@+id/recording_devices_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/additional_skills_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Хобби, доп навыки:" />
+
+        <EditText
+            android:id="@+id/additional_skills_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            android:text="Копия водительского удостоверения,
+страховки, СТС и паспорта (всех страниц)"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/send_btn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/yellow_round_btn_background"
+            android:text="Отправить"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>

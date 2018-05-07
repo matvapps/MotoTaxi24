@@ -18,15 +18,21 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
     private final String TAG = AuthActivity.class.getSimpleName();
 
+    private static final String USER_TYPE = "user_type";
+    public static final String USER_DRIVER = "driver";
+    public static final String USER_DISPATCHER = "dispatcher";
+
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button submit;
+    private Button register;
 
     private AuthPresenter authPresenter;
+    private String userType;
 
-
-    public static void start(Activity activity) {
+    public static void start(Activity activity, String userType) {
         Intent intent = new Intent(activity, AuthActivity.class);
+        intent.putExtra(USER_TYPE, userType);
         activity.startActivity(intent);
     }
 
@@ -42,9 +48,26 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
     @Override
     protected void initViews() {
+
+        userType = getIntent().getStringExtra(USER_TYPE);
+
         emailEditText = findViewById(R.id.email_edtxt);
         passwordEditText = findViewById(R.id.password_edtxt);
         submit = findViewById(R.id.submit_btn);
+        register = findViewById(R.id.register_btn);
+
+        switch (userType) {
+            case USER_DISPATCHER: {
+
+                break;
+            }
+            case USER_DRIVER: {
+                register.setVisibility(View.VISIBLE);
+
+
+                break;
+            }
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,22 +105,33 @@ public class AuthActivity extends BaseActivity implements AuthView {
     @Override
     public void onAuth(AuthResponse authResponse) {
         Log.d(TAG, "onAuth: " + authResponse.toString());
-        
+
         switch (authResponse.getCode()) {
+            // auth was complete successful
             case 0: {
-                keyValueStorage.setIsLogIn(true);
-                keyValueStorage.setToken(authResponse.getToken());
-                DispatcherMainActivity.start(AuthActivity.this);
-                finish();
+
+                // for dispatcher
+                if (userType.equals(USER_DISPATCHER)) {
+                    keyValueStorage.setIsLogIn(true);
+                    keyValueStorage.setToken(authResponse.getToken());
+                    DispatcherMainActivity.start(AuthActivity.this);
+                    finish();
+                }
+                // for Driver
+                else {
+
+
+                }
+
                 break;
             }
-            
+            // auth not completed
             case 1: {
                 Toast.makeText(this, authResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 break;
             }
-            
+
         }
-        
+
     }
 }

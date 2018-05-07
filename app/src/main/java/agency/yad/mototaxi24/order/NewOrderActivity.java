@@ -128,6 +128,9 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
 
     @Override
     public void onReceiveResponse(BaseResponse response) {
+        if (response.getCode().equals(1))
+            Toast.makeText(this, "Что то пошло не так :(", Toast.LENGTH_SHORT).show();
+
         Log.d(TAG, "onReceiveResponse: " + response.toString());
     }
 }

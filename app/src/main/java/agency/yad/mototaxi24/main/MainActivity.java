@@ -61,11 +61,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_dispatcher: {
-                if (!keyValueStorage.isLogIn()) {
-                    AuthActivity.start(MainActivity.this);
-                }
+                AuthActivity.start(MainActivity.this, AuthActivity.USER_DISPATCHER);
                 break;
             }
+            case R.id.button_driver: {
+                AuthActivity.start(MainActivity.this, AuthActivity.USER_DRIVER);
+                break;
+            }
+
         }
     }
 }

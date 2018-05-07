@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +23,8 @@
         <activity android:name=".dispatcher.DispatcherMainActivity" />
         <activity android:name=".order.NewOrderActivity" />
         <activity android:name=".orderlist.OrderListActivity" />
+        <activity android:name=".register.RegisterActivity" />
+        <activity android:name=".driver.DriverMainActivity"></activity>
     </application>
 
 </manifest>

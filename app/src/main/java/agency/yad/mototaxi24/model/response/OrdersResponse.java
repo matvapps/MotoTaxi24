@@ -11,11 +11,8 @@ import agency.yad.mototaxi24.model.Order;
  * Created by Alexandr
  */
 
-public class OrdersResponse {
+public class OrdersResponse extends BaseResponse{
 
-    @SerializedName("code")
-    @Expose
-    private Integer code;
 
     @SerializedName("orders")
     @Expose
@@ -27,10 +24,6 @@ public class OrdersResponse {
     public OrdersResponse(Integer code, List<Order> orders) {
         this.code = code;
         this.orders = orders;
-    }
-
-    public Integer getCode() {
-        return code;
     }
 
     public void setCode(Integer code) {
