@@ -4,7 +4,9 @@ import android.support.annotation.NonNull;
 
 import agency.yad.mototaxi24.model.response.AuthResponse;
 import agency.yad.mototaxi24.model.response.BaseResponse;
+import agency.yad.mototaxi24.model.response.OrdersResponse;
 import io.reactivex.Observable;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -40,5 +42,11 @@ public interface NetworkInterface {
                                       @NonNull @Query("amount_clients") Integer clientsAmount,
                                       @NonNull @Query("additional_info") String additionalInfo,
                                       @Query("order_datetime") Integer orderDateTime);
+
+    @GET("orders/active")
+    Observable<OrdersResponse> getActiveOrders();
+
+    @GET("orders/all")
+    Observable<OrdersResponse> getOrders();
 
 }

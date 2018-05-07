@@ -86,6 +86,7 @@ public class AuthActivity extends BaseActivity implements AuthView {
         switch (authResponse.getCode()) {
             case 0: {
                 keyValueStorage.setIsLogIn(true);
+                keyValueStorage.setToken(authResponse.getToken());
                 DispatcherMainActivity.start(AuthActivity.this);
                 finish();
                 break;

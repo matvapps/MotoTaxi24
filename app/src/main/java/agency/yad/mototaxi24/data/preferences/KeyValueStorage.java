@@ -18,6 +18,16 @@ public class KeyValueStorage {
         editor = sharedPreferences.edit();
     }
 
+
+    public void setToken(@NonNull String token) {
+        editor.putString("token", token);
+        editor.commit();
+    }
+
+    public String getToken() {
+        return sharedPreferences.getString("token", null);
+    }
+
     public void setIsLogIn(@NonNull boolean isLogIn) {
         editor.putBoolean("is_log_in", isLogIn);
         editor.commit();
