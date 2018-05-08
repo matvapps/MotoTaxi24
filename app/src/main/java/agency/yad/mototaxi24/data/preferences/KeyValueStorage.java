@@ -13,26 +13,38 @@ public class KeyValueStorage {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
+    public static final String USER_DISPATCHER = "user_dispatcher";
+    public static final String USER_DRIVER = "user_driver";
+
     public KeyValueStorage(@NonNull Context context) {
         sharedPreferences = context.getSharedPreferences("MotoTaxi24", 0);
         editor = sharedPreferences.edit();
     }
 
 
-    public void setToken(@NonNull String token) {
-        editor.putString("token", token);
+    public void setDispatcherToken(@NonNull String dispatcher_token) {
+        editor.putString("dispatcher_token", dispatcher_token);
         editor.commit();
     }
 
-    public String getToken() {
-        return sharedPreferences.getString("token", null);
+    public String getDispatcherToken() {
+        return sharedPreferences.getString("dispatcher_token", null);
     }
 
-    public void setIsLogIn(@NonNull boolean isLogIn) {
+    public void setIsNowLogIn(@NonNull boolean isLogIn) {
         editor.putBoolean("is_log_in", isLogIn);
         editor.commit();
     }
 
-    public boolean isLogIn() {return sharedPreferences.getBoolean("is_log_in", false);}
+    public void setLoginedUser(@NonNull String user) {
+        editor.putString("logined_user", user);
+        editor.commit();
+    }
+
+    public String getLoginedUser() {
+        return sharedPreferences.getString("logined_user", null);
+    }
+
+    public boolean isNowLogIn() {return sharedPreferences.getBoolean("is_log_in", false);}
 
 }

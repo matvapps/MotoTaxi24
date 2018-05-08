@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
  * Created by Alexandr.
  */
 public class BaseResponse {
+
+    public static final int CODE_ERROR = 1;
+    public static final int CODE_SUCCESS = 0;
+
     @SerializedName("code")
     @Expose
     protected Integer code;

@@ -102,7 +102,7 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
 
                     Toast.makeText(this, "StartSending", Toast.LENGTH_SHORT).show();
 
-                    newOrderPresenter.addNewOrder(keyValueStorage.getToken(),
+                    newOrderPresenter.addNewOrder(keyValueStorage.getDispatcherToken(),
                             clientName, clientPhone, Long.parseLong(arrivalTime),
                             address, motoType, Integer.parseInt(passengerWeight),
                             Float.parseFloat(serviceCost), Integer.parseInt(humanQuant),

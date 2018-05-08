@@ -69,7 +69,7 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
                 break;
             }
             case R.id.active_order_btn: {
-
+                OrderListActivity.start(this, OrderListActivity.ORDERS_ACTIVE_DISPATCHER);
                 break;
             }
             case R.id.order_history_btn: {
@@ -77,13 +77,17 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
                 break;
             }
             case R.id.log_out_btn: {
-                keyValueStorage.setIsLogIn(false);
+                keyValueStorage.setIsNowLogIn(false);
+                keyValueStorage.setLoginedUser(null);
+                keyValueStorage.setDispatcherToken(null);
                 MainActivity.start(this);
                 finish();
                 break;
             }
             case R.id.change_mode_btn: {
-
+                keyValueStorage.setIsNowLogIn(false);
+                MainActivity.start(this);
+                finish();
                 break;
             }
         }

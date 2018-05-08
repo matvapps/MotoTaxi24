@@ -16,16 +16,6 @@ import retrofit2.http.Query;
 
 public interface NetworkInterface {
 
-//    @GET("discover/movie")
-//    Observable<MovieResponse> getMovies(@Query("api_key") String api_key);
-
-
-    /**
-     *
-     * @param email required
-     * @param password required
-     * @return
-     */
     @POST("dispatcher/auth")
     Observable<AuthResponse> tryAuth(@NonNull @Query("email") String email,
                                      @NonNull @Query("password") String password);
@@ -42,6 +32,9 @@ public interface NetworkInterface {
                                       @NonNull @Query("amount_clients") Integer clientsAmount,
                                       @NonNull @Query("additional_info") String additionalInfo,
                                       @Query("order_datetime") Integer orderDateTime);
+
+    @POST("order/delete")
+    Observable<BaseResponse> deleteOrder(@NonNull @Query("id") Integer id);
 
     @GET("orders/active")
     Observable<OrdersResponse> getActiveOrders();

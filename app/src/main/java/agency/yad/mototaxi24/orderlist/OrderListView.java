@@ -1,6 +1,7 @@
 package agency.yad.mototaxi24.orderlist;
 
 import agency.yad.mototaxi24.base.BaseView;
+import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.model.response.OrdersResponse;
 
 /**
@@ -9,5 +10,6 @@ import agency.yad.mototaxi24.model.response.OrdersResponse;
 public interface OrderListView extends BaseView {
 
     void getOrders(OrdersResponse ordersResponse);
+    void tryDeleteOrder(BaseResponse response);
 
 }

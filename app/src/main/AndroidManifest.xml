@@ -12,19 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+        <activity
+            android:name=".main.MainActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.AuthActivity" />
-        <activity android:name=".dispatcher.DispatcherMainActivity" />
-        <activity android:name=".order.NewOrderActivity" />
-        <activity android:name=".orderlist.OrderListActivity" />
-        <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".driver.DriverMainActivity"></activity>
+        <activity
+            android:name=".auth.AuthActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".dispatcher.DispatcherMainActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".order.NewOrderActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".orderlist.OrderListActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".register.RegisterActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".driver.DriverMainActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

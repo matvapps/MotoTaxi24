@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
+import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.model.response.OrdersResponse;
 
 public class OrderListActivity extends BaseActivity implements OrderListView {
@@ -64,6 +66,19 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
         ordersList.setLayoutManager(new LinearLayoutManager(this));
 
         orderListAdapter = new OrderListAdapter(ordersType);
+        orderListAdapter.setOrderListItemClickListener(new OrderListItemClickListener() {
+            @Override
+            public void onDeleteOrder(int id) {
+                orderListPresenter.deleteOrder(id);
+            }
+
+            @Override
+            public void onSubmitOrder(int id) {
+
+            }
+        });
+
+
         ordersList.setAdapter(orderListAdapter);
 
 
@@ -90,6 +105,20 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
     public void getOrders(OrdersResponse ordersResponse) {
         Log.d("TAG", "getOrders: " + ordersResponse.getCode());
         orderListAdapter.setItems(ordersResponse.getOrders());
+    }
+
+    @Override
+    public void tryDeleteOrder(BaseResponse response) {
+        switch (response.getCode()) {
+            case BaseResponse.CODE_SUCCESS: {
+                orderListPresenter.getOrders(ordersType);
+                break;
+            }
+            case BaseResponse.CODE_ERROR: {
+                Toast.makeText(this, "Удаление не удалось", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
     }
 
     @Override

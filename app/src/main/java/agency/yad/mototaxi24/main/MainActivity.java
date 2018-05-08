@@ -9,7 +9,9 @@ import android.widget.Button;
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.auth.AuthActivity;
 import agency.yad.mototaxi24.base.BaseActivity;
+import agency.yad.mototaxi24.data.preferences.KeyValueStorage;
 import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
+import agency.yad.mototaxi24.driver.DriverMainActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -49,9 +51,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (keyValueStorage.isLogIn()) {
-            DispatcherMainActivity.start(this);
-            finish();
+
+        if (keyValueStorage.getLoginedUser() != null && keyValueStorage.isNowLogIn()) {
+            switch (keyValueStorage.getLoginedUser()) {
+                case KeyValueStorage.USER_DISPATCHER: {
+                    DispatcherMainActivity.start(this);
+                    finish();
+                    break;
+                }
+                case KeyValueStorage.USER_DRIVER: {
+                    DriverMainActivity.start(this);
+                    finish();
+                    break;
+                }
+                default:
+                    break;
+            }
         }
 
     }

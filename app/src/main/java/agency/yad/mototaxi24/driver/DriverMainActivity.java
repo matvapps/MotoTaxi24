@@ -69,7 +69,7 @@ public class DriverMainActivity extends BaseActivity implements View.OnClickList
                 break;
             }
             case R.id.log_out_btn: {
-                keyValueStorage.setIsLogIn(false);
+                keyValueStorage.setIsNowLogIn(false);
                 MainActivity.start(this);
                 finish();
                 break;

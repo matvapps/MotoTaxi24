@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,9 +21,11 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private String orderType;
     private List<Order> orderList;
+    private OrderListItemClickListener orderListItemClickListener;
 
 
     public void setItems(List<Order> orders) {
+        orderList.clear();
         orderList.addAll(orders);
         notifyDataSetChanged();
     }
@@ -52,7 +55,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return new ActiveOrdersViewHolder(view);
             }
             case OrderListActivity.ORDERS_HISTORY: {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_history, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_active, parent, false);
                 return new HistoryOrdersViewHolder(view);
             }
         }
@@ -60,7 +63,71 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+
+        switch (orderType) {
+            case OrderListActivity.ORDERS_MY: {
+
+                break;
+            }
+            case OrderListActivity.ORDERS_ACTIVE_DISPATCHER:
+            case OrderListActivity.ORDERS_ACTIVE_DRIVER: {
+
+                ActiveOrdersViewHolder activeOrdersViewHolder = (ActiveOrdersViewHolder) holder;
+
+                String timeInfo = getItem(position).getOrder_time();
+                String info = "Имя клиента: " + getItem(position).getName()
+                        + "\n" +"Телефон: " + getItem(position).getPhone()
+                        + "\n" +"Адрес: " + getItem(position).getAddress()
+                        + "\n" +"Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" +"Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" +"Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" +"Цена: " + getItem(position).getPrice()
+                        + "\n" +"Прочее: " + getItem(position).getAdditional_info();
+
+                String buttonTitle = "Отмена";
+
+                activeOrdersViewHolder.dateText.setText(timeInfo);
+                activeOrdersViewHolder.infoText.setText(info);
+                activeOrdersViewHolder.button.setText(buttonTitle);
+                activeOrdersViewHolder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (orderType.equals(OrderListActivity.ORDERS_ACTIVE_DISPATCHER)) {
+                            orderListItemClickListener.onDeleteOrder(getItem(position).getId());
+                        } else {
+                            orderListItemClickListener.onSubmitOrder(getItem(position).getId());
+                        }
+                    }
+                });
+                break;
+            }
+            case OrderListActivity.ORDERS_HISTORY: {
+                HistoryOrdersViewHolder historyOrdersViewHolder = (HistoryOrdersViewHolder) holder;
+
+                String driverInfo = getItem(position).getDriverFio()
+                        + "\n" + getItem(position).getDriverPhone()
+                        + "\n" + getItem(position).getDriverBikeModel();
+
+                String timeInfo = getItem(position).getOrder_time();
+                String info = "Имя клиента: " + getItem(position).getName()
+                        + "\n" +"Телефон: " + getItem(position).getPhone()
+                        + "\n" +"Адрес: " + getItem(position).getAddress()
+                        + "\n" +"Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" +"Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" +"Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" +"Цена: " + getItem(position).getPrice()
+                        + "\n" +"Прочее: " + getItem(position).getAdditional_info()
+                        + "\n\n"
+                        + "Статус: " + getItem(position).getStatus();
+
+                historyOrdersViewHolder.dateText.setText(timeInfo);
+                historyOrdersViewHolder.driverInfoText.setText(driverInfo);
+                historyOrdersViewHolder.infoText.setText(info);
+
+                break;
+            }
+        }
 
     }
 
@@ -73,6 +140,14 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return orderList.get(position);
     }
 
+    public OrderListItemClickListener getOrderListItemClickListener() {
+        return orderListItemClickListener;
+    }
+
+    public void setOrderListItemClickListener(OrderListItemClickListener orderListItemClickListener) {
+        this.orderListItemClickListener = orderListItemClickListener;
+    }
+
     private class MyOrdersViewHolder extends BaseOrdersViewHolder {
 
         public MyOrdersViewHolder(View itemView) {
@@ -82,22 +157,32 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private class HistoryOrdersViewHolder extends BaseOrdersViewHolder {
 
+        public TextView driverInfoText;
+
         public HistoryOrdersViewHolder(View itemView) {
             super(itemView);
+
+            driverInfoText = itemView.findViewById(R.id.driver_info_text);
+            driverInfoText.setVisibility(View.VISIBLE);
         }
     }
 
     private class ActiveOrdersViewHolder extends BaseOrdersViewHolder {
 
+        public Button button;
+
         public ActiveOrdersViewHolder(View itemView) {
             super(itemView);
+
+            button = itemView.findViewById(R.id.order_btn);
+            button.setVisibility(View.VISIBLE);
         }
     }
 
     private class BaseOrdersViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView dateText;
-        private TextView infoText;
+        public TextView dateText;
+        public TextView infoText;
 
         public BaseOrdersViewHolder(View itemView) {
             super(itemView);
