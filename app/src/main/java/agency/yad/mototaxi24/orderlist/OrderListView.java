@@ -10,6 +10,8 @@ import agency.yad.mototaxi24.model.response.OrdersResponse;
 public interface OrderListView extends BaseView {
 
     void getOrders(OrdersResponse ordersResponse);
-    void tryDeleteOrder(BaseResponse response);
+    void onTryDeleteOrder(BaseResponse response);
+    void onTryTakeOrder(BaseResponse response);
+    void onTryDoneOrder(BaseResponse response);
 
 }

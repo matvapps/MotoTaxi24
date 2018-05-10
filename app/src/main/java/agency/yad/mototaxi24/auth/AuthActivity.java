@@ -13,6 +13,7 @@ import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.data.preferences.KeyValueStorage;
 import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
+import agency.yad.mototaxi24.driver.DriverMainActivity;
 import agency.yad.mototaxi24.model.response.AuthResponse;
 import agency.yad.mototaxi24.register.RegisterActivity;
 
@@ -50,13 +51,49 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
     @Override
     protected void initViews() {
-
         userType = getIntent().getStringExtra(USER_TYPE);
+
+        switch (userType) {
+            case AuthActivity.USER_DISPATCHER: {
+
+                authPresenter = new AuthPresenter(USER_DISPATCHER);
+
+                if (keyValueStorage.getDispatcherToken() != null) {
+                    keyValueStorage.setIsNowLogIn(true);
+                    DispatcherMainActivity.start(AuthActivity.this);
+                    finish();
+                }
+                break;
+            }
+            case AuthActivity.USER_DRIVER: {
+                authPresenter = new AuthPresenter(USER_DRIVER);
+
+                if (keyValueStorage.getDriverToken() != null) {
+                    keyValueStorage.setIsNowLogIn(true);
+                    DriverMainActivity.start(AuthActivity.this);
+                    finish();
+                }
+
+                break;
+            }
+            default:
+                break;
+        }
+
 
         emailEditText = findViewById(R.id.email_edtxt);
         passwordEditText = findViewById(R.id.password_edtxt);
         submit = findViewById(R.id.submit_btn);
         register = findViewById(R.id.register_btn);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                authPresenter.tryAuth(
+                        emailEditText.getText().toString(),
+                        passwordEditText.getText().toString());
+            }
+        });
 
         switch (userType) {
             case USER_DISPATCHER: {
@@ -95,24 +132,7 @@ public class AuthActivity extends BaseActivity implements AuthView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        switch (userType) {
-            case AuthActivity.USER_DISPATCHER: {
-                if (keyValueStorage.getDispatcherToken() != null) {
-                    keyValueStorage.setIsNowLogIn(true);
-                    DispatcherMainActivity.start(AuthActivity.this);
-                    finish();
-                }
-                break;
-            }
-            case AuthActivity.USER_DRIVER: {
 
-                break;
-            }
-            default:
-                break;
-        }
-
-        authPresenter = new AuthPresenter();
         authPresenter.attachView(this);
     }
 
@@ -136,7 +156,6 @@ public class AuthActivity extends BaseActivity implements AuthView {
 
                 // for dispatcher
                 if (userType.equals(USER_DISPATCHER)) {
-                    keyValueStorage.setIsNowLogIn(true);
                     keyValueStorage.setLoginedUser(KeyValueStorage.USER_DISPATCHER);
                     keyValueStorage.setDispatcherToken(authResponse.getToken());
                     DispatcherMainActivity.start(AuthActivity.this);
@@ -144,8 +163,10 @@ public class AuthActivity extends BaseActivity implements AuthView {
                 }
                 // for Driver
                 else {
-
-
+                    keyValueStorage.setLoginedUser(KeyValueStorage.USER_DRIVER);
+                    keyValueStorage.setDriverToken(authResponse.getToken());
+                    DriverMainActivity.start(AuthActivity.this);
+                    finish();
                 }
                 keyValueStorage.setIsNowLogIn(true);
                 break;

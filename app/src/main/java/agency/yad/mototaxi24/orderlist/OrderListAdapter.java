@@ -47,7 +47,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         View view;
         switch (orderType) {
             case OrderListActivity.ORDERS_MY: {
-//                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.active_order_item, null);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_active, parent, false);
+                return new ActiveOrdersViewHolder(view);
             }
             case OrderListActivity.ORDERS_ACTIVE_DISPATCHER:
             case OrderListActivity.ORDERS_ACTIVE_DRIVER: {
@@ -67,7 +68,30 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         switch (orderType) {
             case OrderListActivity.ORDERS_MY: {
+                ActiveOrdersViewHolder activeOrdersViewHolder = (ActiveOrdersViewHolder) holder;
 
+                String timeInfo = getItem(position).getOrder_time();
+                String info = "Имя клиента: " + getItem(position).getName()
+                        + "\n" + "Телефон: " + getItem(position).getPhone()
+                        + "\n" + "Адрес: " + getItem(position).getAddress()
+                        + "\n" + "Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" + "Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" + "Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" + "Цена: " + getItem(position).getPrice()
+                        + "\n" + "Прочее: " + getItem(position).getAdditional_info();
+
+                String buttonTitle = "Завершить";
+                activeOrdersViewHolder.dateText.setText(timeInfo);
+                activeOrdersViewHolder.infoText.setText(info);
+                activeOrdersViewHolder.button.setText(buttonTitle);
+                activeOrdersViewHolder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        orderListItemClickListener.onOrderDone(getItem(position).getId());
+                        orderList.remove(position);
+                        notifyItemRemoved(position);
+                    }
+                });
                 break;
             }
             case OrderListActivity.ORDERS_ACTIVE_DISPATCHER:
@@ -77,15 +101,21 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 String timeInfo = getItem(position).getOrder_time();
                 String info = "Имя клиента: " + getItem(position).getName()
-                        + "\n" +"Телефон: " + getItem(position).getPhone()
-                        + "\n" +"Адрес: " + getItem(position).getAddress()
-                        + "\n" +"Время подачи: " + getItem(position).getCreated_at()
-                        + "\n" +"Вес пассажира: " + getItem(position).getWeight()
-                        + "\n" +"Тип мотоцикла: " + getItem(position).getBike_type()
-                        + "\n" +"Цена: " + getItem(position).getPrice()
-                        + "\n" +"Прочее: " + getItem(position).getAdditional_info();
+                        + "\n" + "Телефон: " + getItem(position).getPhone()
+                        + "\n" + "Адрес: " + getItem(position).getAddress()
+                        + "\n" + "Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" + "Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" + "Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" + "Цена: " + getItem(position).getPrice()
+                        + "\n" + "Прочее: " + getItem(position).getAdditional_info();
 
-                String buttonTitle = "Отмена";
+                String buttonTitle;
+
+                if (orderType.equals(OrderListActivity.ORDERS_ACTIVE_DISPATCHER)) {
+                    buttonTitle = "Отмена";
+                } else {
+                    buttonTitle = "Взять заказ";
+                }
 
                 activeOrdersViewHolder.dateText.setText(timeInfo);
                 activeOrdersViewHolder.infoText.setText(info);
@@ -97,11 +127,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             orderListItemClickListener.onDeleteOrder(getItem(position).getId());
                             orderList.remove(position);
                             notifyItemRemoved(position);
-
-//                            notifyDataSetChanged();
-
                         } else {
-                            orderListItemClickListener.onSubmitOrder(getItem(position).getId());
+                            orderListItemClickListener.onTakeOrder(getItem(position).getId());
                         }
                     }
                 });
@@ -116,13 +143,13 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 String timeInfo = getItem(position).getOrder_time();
                 String info = "Имя клиента: " + getItem(position).getName()
-                        + "\n" +"Телефон: " + getItem(position).getPhone()
-                        + "\n" +"Адрес: " + getItem(position).getAddress()
-                        + "\n" +"Время подачи: " + getItem(position).getCreated_at()
-                        + "\n" +"Вес пассажира: " + getItem(position).getWeight()
-                        + "\n" +"Тип мотоцикла: " + getItem(position).getBike_type()
-                        + "\n" +"Цена: " + getItem(position).getPrice()
-                        + "\n" +"Прочее: " + getItem(position).getAdditional_info()
+                        + "\n" + "Телефон: " + getItem(position).getPhone()
+                        + "\n" + "Адрес: " + getItem(position).getAddress()
+                        + "\n" + "Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" + "Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" + "Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" + "Цена: " + getItem(position).getPrice()
+                        + "\n" + "Прочее: " + getItem(position).getAdditional_info()
                         + "\n\n"
                         + "Статус: " + getItem(position).getStatus();
 

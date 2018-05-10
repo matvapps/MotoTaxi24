@@ -31,6 +31,8 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
     private OrderListPresenter orderListPresenter;
     private String ordersType = "";
 
+    private String token;
+
 
     public static void start(Activity activity, @NonNull String ordersType) {
         Intent intent = new Intent(activity, OrderListActivity.class);
@@ -73,9 +75,17 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
             }
 
             @Override
-            public void onSubmitOrder(int id) {
-
+            public void onTakeOrder(int id) {
+                orderListPresenter.takeOrder(id, token);
+//                Toast.makeText(OrderListActivity.this, "order take", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onOrderDone(int id) {
+                orderListPresenter.doneOrder(id);
+//                Toast.makeText(OrderListActivity.this, "Order done", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
 
@@ -97,7 +107,10 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
         orderListPresenter = new OrderListPresenter();
         orderListPresenter.attachView(this);
 
-        orderListPresenter.getOrders(ordersType);
+        token = keyValueStorage.getDriverToken();
+        Log.d("OrderListActivity", "onCreate: token" + token);
+
+        orderListPresenter.getOrders(ordersType, token);
 
     }
 
@@ -108,10 +121,10 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
     }
 
     @Override
-    public void tryDeleteOrder(BaseResponse response) {
+    public void onTryDeleteOrder(BaseResponse response) {
         switch (response.getCode()) {
             case BaseResponse.CODE_SUCCESS: {
-                orderListPresenter.getOrders(ordersType);
+                orderListPresenter.getOrders(ordersType, null);
                 break;
             }
             case BaseResponse.CODE_ERROR: {
@@ -119,6 +132,25 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onTryTakeOrder(BaseResponse response) {
+        switch (response.getCode()) {
+            case BaseResponse.CODE_SUCCESS: {
+//                orderListPresenter.getOrders(ordersType);
+                break;
+            }
+            case BaseResponse.CODE_ERROR: {
+                Toast.makeText(this, "Не удалось взять заказ", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onTryDoneOrder(BaseResponse response) {
+
     }
 
     @Override

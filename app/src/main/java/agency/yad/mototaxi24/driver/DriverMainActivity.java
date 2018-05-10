@@ -10,6 +10,7 @@ import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
 import agency.yad.mototaxi24.main.MainActivity;
+import agency.yad.mototaxi24.orderlist.OrderListActivity;
 
 public class DriverMainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -20,7 +21,7 @@ public class DriverMainActivity extends BaseActivity implements View.OnClickList
 
 
     public static void start(Activity activity) {
-        Intent intent = new Intent(activity, DispatcherMainActivity.class);
+        Intent intent = new Intent(activity, DriverMainActivity.class);
         activity.startActivity(intent);
     }
 
@@ -37,7 +38,7 @@ public class DriverMainActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void initViews() {
         activeOrdersBtn = findViewById(R.id.active_order_btn);
-        myOrdersBtn = findViewById(R.id.order_history_btn);
+        myOrdersBtn = findViewById(R.id.my_orders_btn);
         logoutBtn = findViewById(R.id.log_out_btn);
         changeModeBtn = findViewById(R.id.change_mode_btn);
 
@@ -61,21 +62,25 @@ public class DriverMainActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.active_order_btn: {
-
+                OrderListActivity.start(this, OrderListActivity.ORDERS_ACTIVE_DRIVER);
                 break;
             }
             case R.id.my_orders_btn: {
-
+                OrderListActivity.start(this, OrderListActivity.ORDERS_MY);
                 break;
             }
             case R.id.log_out_btn: {
                 keyValueStorage.setIsNowLogIn(false);
+                keyValueStorage.setLoginedUser(null);
+                keyValueStorage.setDriverToken(null);
                 MainActivity.start(this);
                 finish();
                 break;
             }
             case R.id.change_mode_btn: {
-
+                keyValueStorage.setIsNowLogIn(false);
+                MainActivity.start(this);
+                finish();
                 break;
             }
         }

@@ -93,14 +93,16 @@
 
 
         <TextView
-            android:id="@+id/client_name_title"
+            android:id="@+id/name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="ФИО:" />
 
         <EditText
-            android:id="@+id/client_name_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/name_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -110,14 +112,16 @@
 
 
         <TextView
-            android:id="@+id/client_phone_title"
+            android:id="@+id/birthday_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Дата рождения:" />
 
         <EditText
-            android:id="@+id/client_phone_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/birthday_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -126,30 +130,54 @@
             android:paddingRight="8dp" />
 
         <TextView
-            android:id="@+id/arrival_time_title"
+            android:id="@+id/phone_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Телефон:" />
 
         <EditText
-            android:id="@+id/arrival_time_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/phone_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
+            android:inputType="phone"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
 
 
         <TextView
-            android:id="@+id/address_title"
+            android:id="@+id/email_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Email:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/email_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+        <TextView
+            android:id="@+id/address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Адрес проживания:" />
+
+        <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/address_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -158,32 +186,18 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
 
-        <TextView
-            android:id="@+id/moto_type_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Адрес проживания:" />
-
-        <EditText
-            android:id="@+id/moto_type_edtxt"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/round_stroke_edtxt_background"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp" />
-
 
         <TextView
-            android:id="@+id/passenger_weight_title"
+            android:id="@+id/near_subway_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Ближайшее метро:" />
 
         <EditText
-            android:id="@+id/passenger_weight_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/near_subway_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -193,14 +207,16 @@
 
 
         <TextView
-            android:id="@+id/service_cost_title"
+            android:id="@+id/driving_exp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Стаж вождения мотоцикла(с какого года):" />
 
         <EditText
-            android:id="@+id/service_cost_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/driving_exp_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -209,14 +225,16 @@
             android:paddingRight="8dp" />
 
         <TextView
-            android:id="@+id/human_quant_title"
+            android:id="@+id/moto_mark_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Марка мотоцикла:" />
 
         <EditText
-            android:id="@+id/human_quant_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/moto_mark_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -233,6 +251,8 @@
             android:text="Модель мотоцикла:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/moto_model_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -243,14 +263,17 @@
 
 
         <TextView
-            android:id="@+id/additional_info_title"
+            android:id="@+id/moto_year_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Год выпуска мотоцикла:" />
 
         <EditText
-            android:id="@+id/additional_info_edtxt"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/moto_year_edtxt"
+            android:inputType="date"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
@@ -267,6 +290,8 @@
             android:text="Цвет мотоцикла:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/moto_color_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -283,6 +308,8 @@
             android:text="Наличие регистрациоонного знака:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/registration_number_availability_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -300,6 +327,8 @@
             android:text="Наличие страховки и талона ТО:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/insurance_availability_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -317,6 +346,8 @@
             android:text="Наличие вещей для пассажира:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/trunk_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -334,6 +365,8 @@
             android:text="Предпочтительный вес пассажира:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/required_passenger_weight_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -351,6 +384,8 @@
             android:text="Наличие фото и видео устройств:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/recording_devices_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -367,6 +402,8 @@
             android:text="Хобби, доп навыки:" />
 
         <EditText
+            android:maxLines="1"
+            android:singleLine="true"
             android:id="@+id/additional_skills_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -375,6 +412,45 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
 
+
+        <TextView
+            android:id="@+id/password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Пароль:" />
+
+        <EditText
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/password_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
+
+
+        <TextView
+            android:id="@+id/password2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Повторите пароль:" />
+
+        <EditText
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/password2_edtxt"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:background="@drawable/round_stroke_edtxt_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
 
         <TextView
             android:layout_width="wrap_content"

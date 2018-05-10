@@ -6,5 +6,6 @@ package agency.yad.mototaxi24.orderlist;
 
 public interface OrderListItemClickListener {
     void onDeleteOrder(int id);
-    void onSubmitOrder(int id);
+    void onTakeOrder(int id);
+    void onOrderDone(int id);
 }

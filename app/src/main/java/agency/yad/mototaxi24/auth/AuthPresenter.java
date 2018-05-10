@@ -21,8 +21,11 @@ public class AuthPresenter implements Presenter<AuthView> {
     private final String TAG = AuthPresenter.class.getSimpleName();
     private AuthView view;
 
+    private String userName;
 
-    public AuthPresenter() {}
+    public AuthPresenter(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     public void attachView(AuthView view) {
@@ -42,10 +45,21 @@ public class AuthPresenter implements Presenter<AuthView> {
 
 
     private Observable<AuthResponse> getObservable(String email, String password) {
-        return NetworkClient.getRetrofit().create(NetworkInterface.class)
-                .tryAuth(email, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        switch (userName) {
+            case AuthActivity.USER_DISPATCHER: {
+                return NetworkClient.getRetrofit().create(NetworkInterface.class)
+                        .tryAuthDispatcher(email, password)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+            case AuthActivity.USER_DRIVER: {
+                return NetworkClient.getRetrofit().create(NetworkInterface.class)
+                        .tryAuthDriver(email, password)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        }
+        return null;
     }
 
     private DisposableObserver<AuthResponse> getObserver() {

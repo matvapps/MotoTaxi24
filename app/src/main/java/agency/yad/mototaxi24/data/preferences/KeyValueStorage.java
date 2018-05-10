@@ -22,8 +22,17 @@ public class KeyValueStorage {
     }
 
 
-    public void setDispatcherToken(@NonNull String dispatcher_token) {
-        editor.putString("dispatcher_token", dispatcher_token);
+    public void setDriverToken(@NonNull String driverToken) {
+        editor.putString("driver_token", driverToken);
+        editor.commit();
+    }
+
+    public String getDriverToken() {
+        return sharedPreferences.getString("driver_token", null);
+    }
+
+    public void setDispatcherToken(@NonNull String dispatcherToken) {
+        editor.putString("dispatcher_token", dispatcherToken);
         editor.commit();
     }
 
