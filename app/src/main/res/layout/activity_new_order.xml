@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,8 +33,11 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/client_name_title" />
@@ -56,8 +58,12 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
+                android:inputType="phone"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/client_phone_title" />
@@ -77,8 +83,12 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:inputType="datetime"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/arrival_time_title" />
@@ -99,8 +109,11 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/address_title" />
@@ -120,8 +133,12 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:maxLength="20"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moto_type_title" />
@@ -142,8 +159,13 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:maxLength="3"
+                android:inputType="number"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passenger_weight_title" />
@@ -164,8 +186,13 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="8"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/service_cost_title" />
@@ -184,9 +211,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
+                android:inputType="number"
+                android:maxLength="2"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/human_quant_title" />
@@ -204,11 +236,16 @@
             <EditText
                 android:id="@+id/additional_info_edtxt"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:layout_marginTop="8dp"
+                android:maxLength="120"
                 android:background="@drawable/round_stroke_edtxt_background"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
+                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/additional_info_title" />
@@ -231,8 +268,6 @@
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
-
-
 
 
 </ScrollView>

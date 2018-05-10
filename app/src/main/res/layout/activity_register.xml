@@ -30,10 +30,10 @@
 
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/your_photo_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -69,9 +69,10 @@
 
 
                 <ImageView
+                    android:id="@+id/moto_photo_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -378,15 +379,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:textColor="@android:color/black"
-            android:textSize="17sp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
             android:text="Копия водительского удостоверения,
-страховки, СТС и паспорта (всех страниц)"/>
-
+страховки, СТС и паспорта (всех страниц)"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
 
 
         <LinearLayout
@@ -405,9 +405,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -443,9 +444,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -481,9 +483,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -519,9 +522,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -557,9 +561,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>
@@ -595,9 +600,10 @@
 
 
                 <ImageView
+                    android:id="@+id/doc_photo_image_6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp" />
+                    android:tag="image_for_upload" />
 
 
             </FrameLayout>

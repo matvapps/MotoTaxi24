@@ -95,6 +95,11 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     public void onClick(View view) {
                         if (orderType.equals(OrderListActivity.ORDERS_ACTIVE_DISPATCHER)) {
                             orderListItemClickListener.onDeleteOrder(getItem(position).getId());
+                            orderList.remove(position);
+                            notifyItemRemoved(position);
+
+//                            notifyDataSetChanged();
+
                         } else {
                             orderListItemClickListener.onSubmitOrder(getItem(position).getId());
                         }

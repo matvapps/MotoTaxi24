@@ -100,14 +100,14 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
                         !humanQuant.isEmpty() &&
                         !additionalInfo.isEmpty()) {
 
-                    Toast.makeText(this, "StartSending", Toast.LENGTH_SHORT).show();
-
                     newOrderPresenter.addNewOrder(keyValueStorage.getDispatcherToken(),
                             clientName, clientPhone, Long.parseLong(arrivalTime),
                             address, motoType, Integer.parseInt(passengerWeight),
                             Float.parseFloat(serviceCost), Integer.parseInt(humanQuant),
                             additionalInfo, 4654);
 
+                } else {
+                    Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -130,6 +130,8 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
     public void onReceiveResponse(BaseResponse response) {
         if (response.getCode().equals(1))
             Toast.makeText(this, "Что то пошло не так :(", Toast.LENGTH_SHORT).show();
+        else
+            finish();
 
         Log.d(TAG, "onReceiveResponse: " + response.toString());
     }

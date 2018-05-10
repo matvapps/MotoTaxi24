@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import java.io.IOException;
 
 import agency.yad.mototaxi24.R;
-import agency.yad.mototaxi24.auth.AuthActivity;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.model.response.BaseResponse;
 
@@ -27,7 +26,17 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     }
 
 
-    LinearLayout uploadYourPhoto;
+    private LinearLayout uploadYourPhoto;
+    private LinearLayout uploadMotoPhoto;
+
+    private LinearLayout docPhoto1;
+    private LinearLayout docPhoto2;
+    private LinearLayout docPhoto3;
+    private LinearLayout docPhoto4;
+    private LinearLayout docPhoto5;
+    private LinearLayout docPhoto6;
+
+
 
     @Override
     protected boolean getUseArrowBack() {
@@ -43,17 +52,34 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     protected void initViews() {
 
         uploadYourPhoto = findViewById(R.id.upload_your_photo);
+        uploadMotoPhoto = findViewById(R.id.upload_moto_photo);
+        docPhoto1 = findViewById(R.id.doc_photo_1);
+        docPhoto2 = findViewById(R.id.doc_photo_2);
+        docPhoto3 = findViewById(R.id.doc_photo_3);
+        docPhoto4 = findViewById(R.id.doc_photo_4);
+        docPhoto5 = findViewById(R.id.doc_photo_5);
+        docPhoto6 = findViewById(R.id.doc_photo_6);
 
         uploadYourPhoto.setOnClickListener(this);
+        uploadMotoPhoto.setOnClickListener(this);
+
+        docPhoto1.setOnClickListener(this);
+        docPhoto2.setOnClickListener(this);
+        docPhoto3.setOnClickListener(this);
+        docPhoto4.setOnClickListener(this);
+        docPhoto5.setOnClickListener(this);
+        docPhoto6.setOnClickListener(this);
+
 
     }
 
+    private int imageViewId;
 
     @Override
     public void onClick(View v) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        photoPickerIntent.putExtra("image_view_id", v.findViewById(R.id.image).getId());
+        imageViewId =  v.findViewWithTag("image_for_upload").getId();
         startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
     }
 
@@ -69,12 +95,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
 
         Bitmap bitmap = null;
-        int imageViewId = imageReturnedIntent.getIntExtra("image_view_id", 0);
+//        int imageViewId = imageReturnedIntent.getIntExtra("image_view_id", 0);
         ImageView imageView = findViewById(imageViewId);
 
         switch(requestCode) {
