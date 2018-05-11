@@ -1,5 +1,6 @@
 package agency.yad.mototaxi24.order;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.model.response.BaseResponse;
+import custom.MyTimePickerFragment;
 
 public class NewOrderActivity extends BaseActivity implements NewOrderView, View.OnClickListener {
 
@@ -59,6 +62,23 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
         sendBtn = findViewById(R.id.send_btn);
 
         sendBtn.setOnClickListener(this);
+
+        arrivalTimeEdtxt.setFocusable(false);
+        arrivalTimeEdtxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                MyTimePickerFragment myTimePickerFragment = new MyTimePickerFragment();
+                myTimePickerFragment.setTimeChangeListener(new MyTimePickerFragment.onTimeChangeListener() {
+                    @SuppressLint("DefaultLocale")
+                    @Override
+                    public void onTimeChange(TimePicker timePicker) {
+                        ((EditText) view)
+                                .setText(String.format("%d:%d", timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
+                    }
+                });
+                myTimePickerFragment.show(getSupportFragmentManager(), "time picker");
+            }
+        });
     }
 
     @Override
@@ -101,13 +121,13 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
                         !additionalInfo.isEmpty()) {
 
                     newOrderPresenter.addNewOrder(keyValueStorage.getDispatcherToken(),
-                            clientName, clientPhone, Long.parseLong(arrivalTime),
+                            clientName, clientPhone, arrivalTime,
                             address, motoType, Integer.parseInt(passengerWeight),
                             Float.parseFloat(serviceCost), Integer.parseInt(humanQuant),
                             additionalInfo, 4654);
 
                 } else {
-                    Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Заполните пожалуйста все поля", Toast.LENGTH_SHORT).show();
                 }
 
 

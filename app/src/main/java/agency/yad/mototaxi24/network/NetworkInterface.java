@@ -5,9 +5,14 @@ import android.support.annotation.NonNull;
 import agency.yad.mototaxi24.model.response.AuthResponse;
 import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.model.response.OrdersResponse;
+import agency.yad.mototaxi24.model.response.PhotoResponse;
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -28,7 +33,7 @@ public interface NetworkInterface {
     Observable<BaseResponse> addOrder(@NonNull @Query("token") String token,
                                       @NonNull @Query("name") String name,
                                       @NonNull @Query("phone") String phone,
-                                      @NonNull @Query("order_time") Long time,
+                                      @NonNull @Query("order_time") String time,
                                       @NonNull @Query("address") String address,
                                       @NonNull @Query("bike_type") String bikeType,
                                       @NonNull @Query("weight") Integer weight,
@@ -38,8 +43,8 @@ public interface NetworkInterface {
                                       @Query("order_datetime") Integer orderDateTime);
 
     @POST("driver/register")
-    Observable<BaseResponse> registerDriver(@NonNull @Query("photo") Integer photo,
-                                            @NonNull @Query("photo_bike") Integer photo_bike,
+    Observable<BaseResponse> registerDriver(@NonNull @Query("photo") String photo,
+                                            @NonNull @Query("photo_bike") String photo_bike,
                                             @NonNull @Query("fio") String fio,
                                             @NonNull @Query("birthday") String birthday,
                                             @NonNull @Query("phone") String phone,
@@ -59,16 +64,16 @@ public interface NetworkInterface {
                                             @NonNull @Query("hobbies") String hobbies,
                                             @NonNull @Query("password") String password,
                                             @NonNull @Query("password2") String password2,
-                                            @NonNull @Query("photo1") Integer photo1,
-                                            @NonNull @Query("photo2") Integer photo2,
-                                            @NonNull @Query("photo3") Integer photo3,
-                                            @NonNull @Query("photo4") Integer photo4,
-                                            @NonNull @Query("photo5") Integer photo5,
-                                            @NonNull @Query("photo6") Integer photo6,
-                                            @NonNull @Query("photo7") Integer photo7,
-                                            @NonNull @Query("photo8") Integer photo8,
-                                            @NonNull @Query("photo9") Integer photo9,
-                                            @NonNull @Query("photo10") Integer photo10);
+                                            @NonNull @Query("photo1") String photo1,
+                                            @NonNull @Query("photo2") String photo2,
+                                            @NonNull @Query("photo3") String photo3,
+                                            @NonNull @Query("photo4") String photo4,
+                                            @NonNull @Query("photo5") String photo5,
+                                            @NonNull @Query("photo6") String photo6,
+                                            @NonNull @Query("photo7") String photo7,
+                                            @NonNull @Query("photo8") String photo8,
+                                            @NonNull @Query("photo9") String photo9,
+                                            @NonNull @Query("photo10") String photo10);
 
     @POST("order/delete")
     Observable<BaseResponse> deleteOrder(@NonNull @Query("id") Integer id);
@@ -77,14 +82,19 @@ public interface NetworkInterface {
     @POST("driver/takeorder")
     Observable<BaseResponse> takeOrder(@NonNull @Query("order_id") Integer orderId,
                                        @NonNull @Query("token") String token);
-
-
-
     @POST("driver/myorders")
     Observable<OrdersResponse> getMyOrders(@NonNull @Query("token") String token);
+
+    @Multipart
+    @POST("photo/upload")
+    Call<PhotoResponse> postImage(@Part MultipartBody.Part image);
+
+
+
     @GET("orders/active")
     Observable<OrdersResponse> getActiveOrders();
     @GET("orders/all")
     Observable<OrdersResponse> getOrders();
+
 
 }

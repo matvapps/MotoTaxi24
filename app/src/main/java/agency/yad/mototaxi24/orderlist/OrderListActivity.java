@@ -77,12 +77,15 @@ public class OrderListActivity extends BaseActivity implements OrderListView {
             @Override
             public void onTakeOrder(int id) {
                 orderListPresenter.takeOrder(id, token);
+                finish();
+                OrderListActivity.start(OrderListActivity.this, ORDERS_MY);
 //                Toast.makeText(OrderListActivity.this, "order take", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onOrderDone(int id) {
                 orderListPresenter.doneOrder(id);
+                orderListPresenter.getOrders(ordersType, token);
 //                Toast.makeText(OrderListActivity.this, "Order done", Toast.LENGTH_SHORT).show();
             }
 

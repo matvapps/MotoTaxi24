@@ -30,6 +30,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/your_photo_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -69,6 +70,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/moto_photo_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -142,6 +144,7 @@
             android:id="@+id/phone_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:inputType="phone"
             android:background="@drawable/round_stroke_edtxt_background"
@@ -162,6 +165,7 @@
             android:id="@+id/email_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="30"
             android:layout_marginTop="8dp"
             android:inputType="textEmailAddress"
             android:background="@drawable/round_stroke_edtxt_background"
@@ -181,6 +185,7 @@
             android:id="@+id/address_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="40"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -200,6 +205,7 @@
             android:id="@+id/near_subway_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="30"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -219,6 +225,7 @@
             android:id="@+id/driving_exp_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -237,6 +244,7 @@
             android:id="@+id/moto_mark_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -256,6 +264,7 @@
             android:id="@+id/moto_model_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -295,6 +304,7 @@
             android:id="@+id/moto_color_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -313,6 +323,7 @@
             android:id="@+id/registration_number_availability_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="20"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -332,6 +343,7 @@
             android:id="@+id/insurance_availability_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="15"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -351,6 +363,7 @@
             android:id="@+id/trunk_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="15"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -371,6 +384,8 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
+            android:maxLength="4"
+            android:inputType="number"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
@@ -389,6 +404,7 @@
             android:id="@+id/recording_devices_edtxt"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:maxLength="25"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
@@ -428,6 +444,7 @@
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:inputType="textPassword"
+            android:maxLength="15"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
@@ -448,6 +465,7 @@
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:inputType="textPassword"
+            android:maxLength="15"
             android:background="@drawable/round_stroke_edtxt_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp" />
@@ -481,6 +499,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -520,6 +539,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -559,6 +579,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -598,6 +619,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -637,6 +659,7 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -676,7 +699,167 @@
 
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/doc_photo_image_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="image_for_upload" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/doc_photo_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/doc_photo_image_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="image_for_upload" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/doc_photo_image_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="image_for_upload" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/doc_photo_image_9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="image_for_upload" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Загрузить фото"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/doc_photo_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_dark_grey_rect">
+
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/doc_photo_image_10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:tag="image_for_upload" />

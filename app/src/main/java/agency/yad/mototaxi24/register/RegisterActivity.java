@@ -3,35 +3,46 @@ package agency.yad.mototaxi24.register;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
-import java.io.IOException;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.model.response.BaseResponse;
+import agency.yad.mototaxi24.model.response.PhotoResponse;
+import agency.yad.mototaxi24.network.NetworkClient;
+import agency.yad.mototaxi24.network.NetworkInterface;
 import custom.MyDatePickerFragment;
-import custom.MyTimePickerFragment;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class RegisterActivity extends BaseActivity implements RegisterView, View.OnClickListener{
+public class RegisterActivity extends BaseActivity implements RegisterView, View.OnClickListener {
 
-    private static final int GALLERY_REQUEST = 1;
+    private static final int GALLERY_REQUEST = 100;
+    private int imageViewId;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, RegisterActivity.class);
         activity.startActivity(intent);
     }
-
 
     private LinearLayout uploadYourPhoto;
     private LinearLayout uploadMotoPhoto;
@@ -53,6 +64,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     private EditText reqPassengerWeightEdtxt;
     private EditText recDevicesAvailabilityEdtxt;
     private EditText additionalSkillsEdtxt;
+    private EditText passwordEdtxt;
+    private EditText passwordRepeatEdtxt;
 
     private LinearLayout docPhoto1;
     private LinearLayout docPhoto2;
@@ -60,6 +73,28 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     private LinearLayout docPhoto4;
     private LinearLayout docPhoto5;
     private LinearLayout docPhoto6;
+    private LinearLayout docPhoto7;
+    private LinearLayout docPhoto8;
+    private LinearLayout docPhoto9;
+    private LinearLayout docPhoto10;
+
+    private Button registerBtn;
+
+    private RegisterPresenter registerPresenter;
+
+
+    private String myPhotoPath;
+    private String photoBikePath;
+    String photo1Path = "";
+    String photo2Path = "";
+    String photo3Path = "";
+    String photo4Path = "";
+    String photo5Path = "";
+    String photo6Path = "";
+    String photo7Path = "";
+    String photo8Path = "";
+    String photo9Path = "";
+    String photo10Path = "";
 
 
 
@@ -97,21 +132,17 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         reqPassengerWeightEdtxt = findViewById(R.id.required_passenger_weight_edtxt);
         recDevicesAvailabilityEdtxt = findViewById(R.id.recording_devices_edtxt);
         additionalSkillsEdtxt = findViewById(R.id.additional_skills_edtxt);
+        passwordEdtxt = findViewById(R.id.password_edtxt);
+        passwordRepeatEdtxt = findViewById(R.id.password2_edtxt);
+        registerBtn = findViewById(R.id.send_btn);
 
 
-//        birthdayEdtxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View view) {
-//                MyTimePickerFragment newFragment = new MyTimePickerFragment();
-//                newFragment.setTimeChangeListener(new MyTimePickerFragment.onTimeChangeListener() {
-//                    @Override
-//                    public void onTimeChange(TimePicker timePicker) {
-//                        ((EditText) view).setText(timePicker.getCurrentHour() + ":" + timePicker.getCurrentMinute());
-//                    }
-//                });
-//                newFragment.show(getSupportFragmentManager(), "time picker");
-//            }
-//        });
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendData();
+            }
+        });
 
 
         birthdayEdtxt.setFocusable(false);
@@ -138,6 +169,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         docPhoto4 = findViewById(R.id.doc_photo_4);
         docPhoto5 = findViewById(R.id.doc_photo_5);
         docPhoto6 = findViewById(R.id.doc_photo_6);
+        docPhoto7 = findViewById(R.id.doc_photo_7);
+        docPhoto8 = findViewById(R.id.doc_photo_8);
+        docPhoto9 = findViewById(R.id.doc_photo_9);
+        docPhoto10 = findViewById(R.id.doc_photo_10);
 
         uploadYourPhoto.setOnClickListener(this);
         uploadMotoPhoto.setOnClickListener(this);
@@ -147,19 +182,22 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         docPhoto3.setOnClickListener(this);
         docPhoto4.setOnClickListener(this);
         docPhoto5.setOnClickListener(this);
+        docPhoto7.setOnClickListener(this);
         docPhoto6.setOnClickListener(this);
+        docPhoto8.setOnClickListener(this);
+        docPhoto9.setOnClickListener(this);
+        docPhoto10.setOnClickListener(this);
 
 
     }
 
-    private int imageViewId;
 
     @Override
     public void onClick(View v) {
-
+        v.setFocusable(true);
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        imageViewId =  v.findViewWithTag("image_for_upload").getId();
+        imageViewId = v.findViewWithTag("image_for_upload").getId();
         startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
     }
 
@@ -173,35 +211,203 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        registerPresenter = new RegisterPresenter();
+        registerPresenter.attachView(this);
+
     }
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        Bitmap bitmap = null;
-//        int imageViewId = imageReturnedIntent.getIntExtra("image_view_id", 0);
-        ImageView imageView = findViewById(imageViewId);
+        final File file;
 
-        switch(requestCode) {
-            case GALLERY_REQUEST:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+        final ImageView imageView = findViewById(imageViewId);
+        if (requestCode == GALLERY_REQUEST && resultCode == Activity.RESULT_OK) {
+            final Uri selectedImage = data.getData();
+
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            if (cursor == null)
+                return;
+
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            file = new File(filePath);
+
+
+            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
+
+            retrofit2.Call<PhotoResponse> req =
+                    NetworkClient
+                            .getRetrofit()
+                            .create(NetworkInterface.class)
+                            .postImage(body);
+
+            req.enqueue(new Callback<PhotoResponse>() {
+                @Override
+                public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
+                    Log.d("TAG", "onResponse: " + response.body());
+                    switch (response.body().getCode()) {
+                        case 1: {
+                            // ERROR
+                            Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        case 0: {
+                            savePhotoPath(imageViewId, response.body().getPhoto());
+                            Picasso.get().load(file).into(imageView);
+
+//                            imageView.setImageBitmap(bitmap[0]);
+                            break;
+                        }
                     }
-                    imageView.setImageBitmap(bitmap);
+
                 }
+
+                @Override
+                public void onFailure(Call<PhotoResponse> call, Throwable t) {
+                    Log.d("TAG", "onFailure: ");
+                    t.printStackTrace();
+                }
+            });
+
+        }
+
+
+    }
+
+    private void sendData() {
+
+        String name = nameEdtxt.getText().toString();
+        String birthday = birthdayEdtxt.getText().toString();
+        String phone = phoneEdtxt.getText().toString();
+        String email = emailEdtxt.getText().toString();
+        String address = addressEdtxt.getText().toString();
+        String subway = nearSubwayEdtxt.getText().toString();
+        String experience = drivingExpEdtxt.getText().toString();
+        String motoMark = motoMarkEdtxt.getText().toString();
+        String motoModel = motoModelEdtxt.getText().toString();
+        String motoYear = motoYearEdtxt.getText().toString();
+        String motoColor = motoColorEdtxt.getText().toString();
+        String regNum = regNumAvailabilityEdtxt.getText().toString();
+        String insurance = insuranceAvailabilityEdtxt.getText().toString();
+        String trunk = trunkAvailabilityEdtxt.getText().toString();
+        String reqPassengers = reqPassengerWeightEdtxt.getText().toString();
+        String recDevices = recDevicesAvailabilityEdtxt.getText().toString();
+        String additionalSkills = additionalSkillsEdtxt.getText().toString();
+        String password = passwordEdtxt.getText().toString();
+        String repeatPassword = passwordRepeatEdtxt.getText().toString();
+
+        if (!name.isEmpty() && !birthday.isEmpty() &&
+                !phone.isEmpty() && !email.isEmpty() &&
+                !address.isEmpty() && !subway.isEmpty() &&
+                !experience.isEmpty() && !motoMark.isEmpty() &&
+                !motoModel.isEmpty() && !motoYear.isEmpty() &&
+                !motoColor.isEmpty() && !regNum.isEmpty() &&
+                !insurance.isEmpty() && !trunk.isEmpty() &&
+                !reqPassengers.isEmpty() && !recDevices.isEmpty() &&
+                !additionalSkills.isEmpty() && !password.isEmpty() &&
+                !repeatPassword.isEmpty()) {
+
+            if (password.equals(repeatPassword)) {
+
+                Log.d("TAG", "sendData: " + photo1Path + " " +
+                        photo2Path + " " + photo3Path + " " + photo4Path + " " + photo5Path + " " + photo6Path + " " + photo7Path + " " + photo8Path + " " + photo9Path + " " + photo10Path);
+
+                registerPresenter.registerDriver(myPhotoPath, photoBikePath, name, birthday, phone, email,
+                        address, subway, experience, motoMark, motoModel, motoYear, motoColor, regNum,
+                        insurance, trunk, Integer.valueOf(reqPassengers), recDevices, additionalSkills, password, repeatPassword, photo1Path,
+                        photo2Path, photo3Path, photo4Path, photo5Path, photo6Path, photo7Path, photo8Path, photo9Path, photo10Path);
+            } else {
+                Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Toast.makeText(this, "Заполните пожалуйста все поля", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void savePhotoPath(int imageId, String path) {
+        switch (imageId) {
+            case R.id.your_photo_image: {
+                myPhotoPath = path;
+                break;
+            }
+            case R.id.moto_photo_image: {
+                photoBikePath = path;
+                break;
+            }
+            case R.id.doc_photo_1: {
+                photo1Path = path;
+                break;
+            }
+            case R.id.doc_photo_2: {
+                photo2Path = path;
+                break;
+            }
+            case R.id.doc_photo_3: {
+                photo3Path = path;
+                break;
+            }
+            case R.id.doc_photo_4: {
+                photo4Path = path;
+                break;
+            }
+            case R.id.doc_photo_5: {
+                photo5Path = path;
+                break;
+            }
+            case R.id.doc_photo_6: {
+                photo6Path = path;
+                break;
+            }
+            case R.id.doc_photo_7: {
+                photo7Path = path;
+                break;
+            }
+            case R.id.doc_photo_8: {
+                photo8Path = path;
+                break;
+            }
+            case R.id.doc_photo_9: {
+                photo9Path = path;
+                break;
+            }
+            case R.id.doc_photo_10: {
+                photo10Path = path;
+                break;
+            }
+        }
+    }
 
     @Override
     public void tryRegister(BaseResponse response) {
+        Log.d("TAG", "tryRegister: " + response.getMessage());
+        switch (response.getCode()) {
+            case 0: {
+                Toast.makeText(this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            }
+            case 1: {
+                Toast.makeText(this, "Что-то пошло не так", Toast.LENGTH_SHORT).show();
+                break;
+            }
 
+        }
+    }
+
+    @Override
+    public void tryUploadPhoto(PhotoResponse response) {
+        Log.d("TAG", "tryUploadPhoto: " + response.toString());
+        Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -213,4 +419,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     public void showLoading(boolean show) {
 
     }
+
+
 }

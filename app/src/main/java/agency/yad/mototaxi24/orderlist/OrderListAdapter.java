@@ -81,6 +81,14 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         + "\n" + "Прочее: " + getItem(position).getAdditional_info();
 
                 String buttonTitle = "Завершить";
+                if (getItem(position).getStatus().equals("3")) {
+                    buttonTitle = "Заказ выполнен";
+                    activeOrdersViewHolder.button.setClickable(false);
+                    activeOrdersViewHolder.button.setEnabled(false);
+                } else {
+                    activeOrdersViewHolder.button.setEnabled(true);
+                }
+
                 activeOrdersViewHolder.dateText.setText(timeInfo);
                 activeOrdersViewHolder.infoText.setText(info);
                 activeOrdersViewHolder.button.setText(buttonTitle);
@@ -88,8 +96,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View view) {
                         orderListItemClickListener.onOrderDone(getItem(position).getId());
-                        orderList.remove(position);
-                        notifyItemRemoved(position);
+//                        orderList.remove(position);
+//                        notifyItemRemoved(position);
                     }
                 });
                 break;
@@ -114,6 +122,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (orderType.equals(OrderListActivity.ORDERS_ACTIVE_DISPATCHER)) {
                     buttonTitle = "Отмена";
                 } else {
+                    if (getItem(position).getStatus().equals("2")) {
+                        buttonTitle = "Заказ взят";
+                        activeOrdersViewHolder.button.setEnabled(false);
+                    } else {
+                        activeOrdersViewHolder.button.setEnabled(true);
+                    }
                     buttonTitle = "Взять заказ";
                 }
 
