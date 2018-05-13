@@ -34,11 +34,11 @@
         <activity
             android:name=".orderlist.OrderListActivity"
             android:launchMode="singleInstance" />
-        <activity
-            android:name=".register.RegisterActivity" />
+        <activity android:name=".register.RegisterActivity" />
         <activity
             android:name=".driver.DriverMainActivity"
             android:launchMode="singleInstance" />
+        <activity android:name=".push.SendPushActivity"></activity>
     </application>
 
 </manifest>

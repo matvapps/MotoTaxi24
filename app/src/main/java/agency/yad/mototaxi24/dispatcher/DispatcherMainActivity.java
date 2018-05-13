@@ -11,6 +11,7 @@ import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.main.MainActivity;
 import agency.yad.mototaxi24.order.NewOrderActivity;
 import agency.yad.mototaxi24.orderlist.OrderListActivity;
+import agency.yad.mototaxi24.push.SendPushActivity;
 
 public class DispatcherMainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -20,6 +21,7 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
     private Button logoutBtn;
     private Button changeModeBtn;
 
+    private Button sendPushBtn;
 
     public static void start(Activity activity) {
         Intent intent = new Intent(activity, DispatcherMainActivity.class);
@@ -38,6 +40,10 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initViews() {
+
+        sendPushBtn = findViewById(R.id.push_btn);
+        sendPushBtn.setVisibility(View.VISIBLE);
+
         newOrderBtn = findViewById(R.id.new_order_btn);
         activeOrdersBtn = findViewById(R.id.active_order_btn);
         historyOrdersBtn = findViewById(R.id.order_history_btn);
@@ -49,6 +55,7 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
         historyOrdersBtn.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
         changeModeBtn.setOnClickListener(this);
+        sendPushBtn.setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +95,10 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
                 keyValueStorage.setIsNowLogIn(false);
                 MainActivity.start(this);
                 finish();
+                break;
+            }
+            case R.id.push_btn: {
+                SendPushActivity.start(this);
                 break;
             }
         }

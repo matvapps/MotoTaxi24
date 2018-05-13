@@ -77,22 +77,29 @@ public interface NetworkInterface {
 
     @POST("order/delete")
     Observable<BaseResponse> deleteOrder(@NonNull @Query("id") Integer id);
+
     @POST("order/done")
     Observable<BaseResponse> doneOrder(@NonNull @Query("id") Integer id);
+
     @POST("driver/takeorder")
     Observable<BaseResponse> takeOrder(@NonNull @Query("order_id") Integer orderId,
                                        @NonNull @Query("token") String token);
+
     @POST("driver/myorders")
     Observable<OrdersResponse> getMyOrders(@NonNull @Query("token") String token);
+
+    @POST("push")
+    Observable<BaseResponse> sendPush(@NonNull @Query("title") String title,
+                                      @NonNull @Query("message") String message);
 
     @Multipart
     @POST("photo/upload")
     Call<PhotoResponse> postImage(@Part MultipartBody.Part image);
 
 
-
     @GET("orders/active")
     Observable<OrdersResponse> getActiveOrders();
+
     @GET("orders/all")
     Observable<OrdersResponse> getOrders();
 

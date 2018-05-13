@@ -26,7 +26,7 @@ import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.model.response.PhotoResponse;
 import agency.yad.mototaxi24.network.NetworkClient;
 import agency.yad.mototaxi24.network.NetworkInterface;
-import custom.MyDatePickerFragment;
+import agency.yad.mototaxi24.custom.MyDatePickerFragment;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -85,17 +85,16 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
     private String myPhotoPath;
     private String photoBikePath;
-    String photo1Path = "";
-    String photo2Path = "";
-    String photo3Path = "";
-    String photo4Path = "";
-    String photo5Path = "";
-    String photo6Path = "";
-    String photo7Path = "";
-    String photo8Path = "";
-    String photo9Path = "";
-    String photo10Path = "";
-
+    String photo1Path = "32";
+    String photo2Path = "32";
+    String photo3Path = "32";
+    String photo4Path = "32";
+    String photo5Path = "32";
+    String photo6Path = "32";
+    String photo7Path = "32";
+    String photo8Path = "32";
+    String photo9Path = "32";
+    String photo10Path = "32";
 
 
     @Override
@@ -318,8 +317,39 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
             if (password.equals(repeatPassword)) {
 
-                Log.d("TAG", "sendData: " + photo1Path + " " +
-                        photo2Path + " " + photo3Path + " " + photo4Path + " " + photo5Path + " " + photo6Path + " " + photo7Path + " " + photo8Path + " " + photo9Path + " " + photo10Path);
+                Log.d("TAG", "sendData: \n" +
+                        "name = " + name + "\n" +
+                        "birthday = " + birthday + "\n" +
+                        "phone = " + phone + "\n" +
+                        "email = " + email + "\n" +
+                        "address = " + address + "\n" +
+                        "subway = " + subway + "\n" +
+                        "experience = " + experience + "\n" +
+                        "motoMark = " + motoMark + "\n" +
+                        "motoModel = " + motoModel + "\n" +
+                        "motoYear = " + motoYear + "\n" +
+                        "motoColor = " + motoColor + "\n" +
+                        "regNum = " + regNum + "\n" +
+                        "insurance = " + insurance + "\n" +
+                        "trunk = " + trunk + "\n" +
+                        "reqPassengers = " + reqPassengers + "\n" +
+                        "recDevices = " + recDevices + "\n" +
+                        "additionalSkills = " + additionalSkills + "\n" +
+                        "password = " + password + "\n" +
+                        "repeatPassword = " + repeatPassword + "\n" +
+                        "myPhotoPath = " + myPhotoPath + "\n" +
+                        "photoBikePath = " + photoBikePath + "\n" +
+                        "photo1Path = " + photo1Path + "\n" +
+                        "photo2Path = " + photo2Path + "\n" +
+                        "photo3Path = " + photo3Path + "\n" +
+                        "photo4Path = " + photo4Path + "\n" +
+                        "photo5Path = " + photo5Path + "\n" +
+                        "photo6Path = " + photo6Path + "\n" +
+                        "photo7Path = " + photo7Path + "\n" +
+                        "photo8Path = " + photo8Path + "\n" +
+                        "photo9Path = " + photo9Path + "\n" +
+                        "photo10Path = " + photo10Path + "\n");
+
 
                 registerPresenter.registerDriver(myPhotoPath, photoBikePath, name, birthday, phone, email,
                         address, subway, experience, motoMark, motoModel, motoYear, motoColor, regNum,
@@ -335,6 +365,9 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     }
 
     private void savePhotoPath(int imageId, String path) {
+
+        Log.d("TAG", "savePhotoPath: " + path);
+
         switch (imageId) {
             case R.id.your_photo_image: {
                 myPhotoPath = path;
@@ -344,47 +377,50 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                 photoBikePath = path;
                 break;
             }
-            case R.id.doc_photo_1: {
+            case R.id.doc_photo_image_1: {
                 photo1Path = path;
                 break;
             }
-            case R.id.doc_photo_2: {
+            case R.id.doc_photo_image_2: {
                 photo2Path = path;
                 break;
             }
-            case R.id.doc_photo_3: {
+            case R.id.doc_photo_image_3: {
                 photo3Path = path;
                 break;
             }
-            case R.id.doc_photo_4: {
+            case R.id.doc_photo_image_4: {
                 photo4Path = path;
                 break;
             }
-            case R.id.doc_photo_5: {
+            case R.id.doc_photo_image_5: {
                 photo5Path = path;
                 break;
             }
-            case R.id.doc_photo_6: {
+            case R.id.doc_photo_image_6: {
                 photo6Path = path;
                 break;
             }
-            case R.id.doc_photo_7: {
+            case R.id.doc_photo_image_7: {
                 photo7Path = path;
                 break;
             }
-            case R.id.doc_photo_8: {
+            case R.id.doc_photo_image_8: {
                 photo8Path = path;
                 break;
             }
-            case R.id.doc_photo_9: {
+            case R.id.doc_photo_image_9: {
                 photo9Path = path;
                 break;
             }
-            case R.id.doc_photo_10: {
+            case R.id.doc_photo_image_10: {
                 photo10Path = path;
                 break;
             }
+
         }
+        Log.d("TAG", "savePhotoPath: " + myPhotoPath);
+
     }
 
     @Override
@@ -397,7 +433,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                 break;
             }
             case 1: {
-                Toast.makeText(this, "Что-то пошло не так", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ошибка: " + response.getMessage(), Toast.LENGTH_SHORT).show();
                 break;
             }
 

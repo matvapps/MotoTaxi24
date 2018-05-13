@@ -1,8 +1,7 @@
-package custom;
+package agency.yad.mototaxi24.custom;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;

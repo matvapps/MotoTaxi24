@@ -14,7 +14,7 @@ import android.widget.Toast;
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
 import agency.yad.mototaxi24.model.response.BaseResponse;
-import custom.MyTimePickerFragment;
+import agency.yad.mototaxi24.custom.MyTimePickerFragment;
 
 public class NewOrderActivity extends BaseActivity implements NewOrderView, View.OnClickListener {
 
