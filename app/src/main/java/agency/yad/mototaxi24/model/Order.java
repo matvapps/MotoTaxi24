@@ -39,11 +39,11 @@ public class Order {
 
     @SerializedName("weight")
     @Expose
-    private Integer weight;
+    private String weight;
 
     @SerializedName("price")
     @Expose
-    private Float price;
+    private String price;
 
     @SerializedName("amount_clients")
     @Expose
@@ -86,7 +86,7 @@ public class Order {
     }
 
     public Order(Integer id, String name, String phone, String order_datetime, String order_time,
-                 String address, String bike_type, Integer weight, Float price, Integer amount_clients,
+                 String address, String bike_type, String weight, String price, Integer amount_clients,
                  String additional_info, String status, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
@@ -105,7 +105,7 @@ public class Order {
     }
 
     public Order(Integer id, String name, String phone, String order_datetime, String order_time,
-                 String address, String bike_type, Integer weight, Float price, Integer amount_clients,
+                 String address, String bike_type, String weight, String price, Integer amount_clients,
                  String additional_info, String status, String created_at, String updated_at,
                  String driverFio, String driverPhone, String driverBikeType, String driverBikeModel) {
         this.id = id;
@@ -184,19 +184,19 @@ public class Order {
         this.bike_type = bike_type;
     }
 
-    public Integer getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public Float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
