@@ -24,7 +24,7 @@ public class NetworkClient {
             OkHttpClient okHttpClient = builder.build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://mototaxi24test.yad.store/api/")
+                    .baseUrl("https://mototaxi24.yad.store/api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)

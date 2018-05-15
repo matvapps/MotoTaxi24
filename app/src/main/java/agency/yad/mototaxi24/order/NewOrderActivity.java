@@ -2,17 +2,20 @@ package agency.yad.mototaxi24.order;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
+import agency.yad.mototaxi24.custom.MyDatePickerFragment;
 import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.custom.MyTimePickerFragment;
 
@@ -74,8 +77,21 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
                     public void onTimeChange(TimePicker timePicker) {
                         ((EditText) view)
                                 .setText(String.format("%d:%d", timePicker.getCurrentHour(), timePicker.getCurrentMinute()));
+
+                        MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+                        myDatePickerFragment.setDateChangeListener(new MyDatePickerFragment.onDateChangeListener() {
+                            @SuppressLint("DefaultLocale")
+                            @Override
+                            public void onDateChange(DatePicker datePicker) {
+                                String str = ((EditText) view).getText().toString();
+                                ((EditText) view)
+                                        .setText(String.format("%s  %d/%d/%d", str, datePicker.getDayOfMonth(), datePicker.getMonth() + 1, datePicker.getYear()));
+                            }
+                        });
+                        myDatePickerFragment.show(getSupportFragmentManager(), "date picker");
                     }
                 });
+
                 myTimePickerFragment.show(getSupportFragmentManager(), "time picker");
             }
         });
@@ -131,7 +147,7 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
                 }
 
 
-                    break;
+                break;
             }
         }
     }

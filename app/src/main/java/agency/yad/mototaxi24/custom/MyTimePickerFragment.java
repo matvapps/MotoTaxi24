@@ -2,6 +2,7 @@ package agency.yad.mototaxi24.custom;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.TimePicker;
@@ -36,7 +37,6 @@ public class MyTimePickerFragment extends DialogFragment {
     public void setTimeChangeListener(onTimeChangeListener timeChangeListener) {
         this.timeChangeListener = timeChangeListener;
     }
-
 
     private TimePickerDialog.OnTimeSetListener timeSetListener =
             new TimePickerDialog.OnTimeSetListener() {

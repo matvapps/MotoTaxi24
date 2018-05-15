@@ -66,6 +66,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
+        String phone;
+
         switch (orderType) {
             case OrderListActivity.ORDERS_MY: {
                 ActiveOrdersViewHolder activeOrdersViewHolder = (ActiveOrdersViewHolder) holder;
@@ -102,26 +104,16 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 });
                 break;
             }
-            case OrderListActivity.ORDERS_ACTIVE_DISPATCHER:
-            case OrderListActivity.ORDERS_ACTIVE_DRIVER: {
-
+            case OrderListActivity.ORDERS_ACTIVE_DRIVER:
+            case OrderListActivity.ORDERS_ACTIVE_DISPATCHER: {
                 ActiveOrdersViewHolder activeOrdersViewHolder = (ActiveOrdersViewHolder) holder;
-
-                String timeInfo = getItem(position).getOrder_time();
-                String info = "Имя клиента: " + getItem(position).getName()
-                        + "\n" + "Телефон: " + getItem(position).getPhone()
-                        + "\n" + "Адрес: " + getItem(position).getAddress()
-                        + "\n" + "Время подачи: " + getItem(position).getCreated_at()
-                        + "\n" + "Вес пассажира: " + getItem(position).getWeight()
-                        + "\n" + "Тип мотоцикла: " + getItem(position).getBike_type()
-                        + "\n" + "Цена: " + getItem(position).getPrice()
-                        + "\n" + "Прочее: " + getItem(position).getAdditional_info();
-
                 String buttonTitle;
 
                 if (orderType.equals(OrderListActivity.ORDERS_ACTIVE_DISPATCHER)) {
                     buttonTitle = "Отмена";
+                    phone = "\n" + "Телефон: " + getItem(position).getPhone();
                 } else {
+                    phone = "";
                     if (getItem(position).getStatus().equals("2")) {
                         buttonTitle = "Заказ взят";
                         activeOrdersViewHolder.button.setEnabled(false);
@@ -130,6 +122,16 @@ public class OrderListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
                     buttonTitle = "Взять заказ";
                 }
+
+                String timeInfo = getItem(position).getOrder_time();
+                String info = "Имя клиента: " + getItem(position).getName()
+                        + phone
+                        + "\n" + "Адрес: " + getItem(position).getAddress()
+                        + "\n" + "Время подачи: " + getItem(position).getCreated_at()
+                        + "\n" + "Вес пассажира: " + getItem(position).getWeight()
+                        + "\n" + "Тип мотоцикла: " + getItem(position).getBike_type()
+                        + "\n" + "Цена: " + getItem(position).getPrice()
+                        + "\n" + "Прочее: " + getItem(position).getAdditional_info();
 
                 activeOrdersViewHolder.dateText.setText(timeInfo);
                 activeOrdersViewHolder.infoText.setText(info);
