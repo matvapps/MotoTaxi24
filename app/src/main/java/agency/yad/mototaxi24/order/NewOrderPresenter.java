@@ -38,7 +38,7 @@ public class NewOrderPresenter implements Presenter<NewOrderView> {
                             String address,
                             String bikeType,
                             Integer weight,
-                            Float price,
+                            Integer price,
                             Integer clientsAmount,
                             String additionalInfo,
                             Integer orderDateTime) {
@@ -56,7 +56,7 @@ public class NewOrderPresenter implements Presenter<NewOrderView> {
                                                    String address,
                                                    String bikeType,
                                                    Integer weight,
-                                                   Float price,
+                                                   Integer price,
                                                    Integer clientsAmount,
                                                    String additionalInfo,
                                                    Integer orderDateTime) {

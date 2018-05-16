@@ -37,7 +37,7 @@ public interface NetworkInterface {
                                       @NonNull @Query("address") String address,
                                       @NonNull @Query("bike_type") String bikeType,
                                       @NonNull @Query("weight") Integer weight,
-                                      @NonNull @Query("price") Float price,
+                                      @NonNull @Query("price") Integer price,
                                       @NonNull @Query("amount_clients") Integer clientsAmount,
                                       @NonNull @Query("additional_info") String additionalInfo,
                                       @Query("order_datetime") Integer orderDateTime);

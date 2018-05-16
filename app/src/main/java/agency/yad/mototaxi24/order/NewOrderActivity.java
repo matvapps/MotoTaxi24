@@ -139,7 +139,7 @@ public class NewOrderActivity extends BaseActivity implements NewOrderView, View
                     newOrderPresenter.addNewOrder(keyValueStorage.getDispatcherToken(),
                             clientName, clientPhone, arrivalTime,
                             address, motoType, Integer.parseInt(passengerWeight),
-                            Float.parseFloat(serviceCost), Integer.parseInt(humanQuant),
+                            Integer.parseInt(serviceCost), Integer.parseInt(humanQuant),
                             additionalInfo, 4654);
 
                 } else {
