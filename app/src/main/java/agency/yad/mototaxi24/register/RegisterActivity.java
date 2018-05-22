@@ -83,18 +83,18 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
     private RegisterPresenter registerPresenter;
 
 
-    private String myPhotoPath;
-    private String photoBikePath;
-    String photo1Path = "32";
-    String photo2Path = "32";
-    String photo3Path = "32";
-    String photo4Path = "32";
-    String photo5Path = "32";
-    String photo6Path = "32";
-    String photo7Path = "32";
-    String photo8Path = "32";
-    String photo9Path = "32";
-    String photo10Path = "32";
+    private String myPhotoPath = "";
+    private String photoBikePath = "";
+    String photo1Path = "";
+    String photo2Path = "";
+    String photo3Path = "";
+    String photo4Path = "";
+    String photo5Path = "";
+    String photo6Path = "";
+    String photo7Path = "";
+    String photo8Path = "";
+    String photo9Path = "";
+    String photo10Path = "";
 
 
     @Override
@@ -249,6 +249,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                             .create(NetworkInterface.class)
                             .postImage(body);
 
+            Picasso.get().load(file).into(imageView);
+
             req.enqueue(new Callback<PhotoResponse>() {
                 @Override
                 public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
@@ -261,7 +263,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                         }
                         case 0: {
                             savePhotoPath(imageViewId, response.body().getPhoto());
-                            Picasso.get().load(file).into(imageView);
 
 //                            imageView.setImageBitmap(bitmap[0]);
                             break;
@@ -273,6 +274,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                 @Override
                 public void onFailure(Call<PhotoResponse> call, Throwable t) {
                     Log.d("TAG", "onFailure: ");
+                    Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото", Toast.LENGTH_SHORT).show();
                     t.printStackTrace();
                 }
             });
@@ -315,49 +317,58 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
                 !additionalSkills.isEmpty() && !password.isEmpty() &&
                 !repeatPassword.isEmpty()) {
 
-            if (password.equals(repeatPassword)) {
+            if (!myPhotoPath.isEmpty() && !photoBikePath.isEmpty()
+                    && !photo1Path.isEmpty() && !photo2Path.isEmpty()
+                    && !photo3Path.isEmpty() && !photo4Path.isEmpty()
+                    && !photo5Path.isEmpty() && !photo6Path.isEmpty()
+                    && !photo7Path.isEmpty() && !photo8Path.isEmpty()
+                    && !photo9Path.isEmpty() && !photo10Path.isEmpty()) {
 
-                Log.d("TAG", "sendData: \n" +
-                        "name = " + name + "\n" +
-                        "birthday = " + birthday + "\n" +
-                        "phone = " + phone + "\n" +
-                        "email = " + email + "\n" +
-                        "address = " + address + "\n" +
-                        "subway = " + subway + "\n" +
-                        "experience = " + experience + "\n" +
-                        "motoMark = " + motoMark + "\n" +
-                        "motoModel = " + motoModel + "\n" +
-                        "motoYear = " + motoYear + "\n" +
-                        "motoColor = " + motoColor + "\n" +
-                        "regNum = " + regNum + "\n" +
-                        "insurance = " + insurance + "\n" +
-                        "trunk = " + trunk + "\n" +
-                        "reqPassengers = " + reqPassengers + "\n" +
-                        "recDevices = " + recDevices + "\n" +
-                        "additionalSkills = " + additionalSkills + "\n" +
-                        "password = " + password + "\n" +
-                        "repeatPassword = " + repeatPassword + "\n" +
-                        "myPhotoPath = " + myPhotoPath + "\n" +
-                        "photoBikePath = " + photoBikePath + "\n" +
-                        "photo1Path = " + photo1Path + "\n" +
-                        "photo2Path = " + photo2Path + "\n" +
-                        "photo3Path = " + photo3Path + "\n" +
-                        "photo4Path = " + photo4Path + "\n" +
-                        "photo5Path = " + photo5Path + "\n" +
-                        "photo6Path = " + photo6Path + "\n" +
-                        "photo7Path = " + photo7Path + "\n" +
-                        "photo8Path = " + photo8Path + "\n" +
-                        "photo9Path = " + photo9Path + "\n" +
-                        "photo10Path = " + photo10Path + "\n");
+                if (password.equals(repeatPassword)) {
+
+                    Log.d("TAG", "sendData: \n" +
+                            "name = " + name + "\n" +
+                            "birthday = " + birthday + "\n" +
+                            "phone = " + phone + "\n" +
+                            "email = " + email + "\n" +
+                            "address = " + address + "\n" +
+                            "subway = " + subway + "\n" +
+                            "experience = " + experience + "\n" +
+                            "motoMark = " + motoMark + "\n" +
+                            "motoModel = " + motoModel + "\n" +
+                            "motoYear = " + motoYear + "\n" +
+                            "motoColor = " + motoColor + "\n" +
+                            "regNum = " + regNum + "\n" +
+                            "insurance = " + insurance + "\n" +
+                            "trunk = " + trunk + "\n" +
+                            "reqPassengers = " + reqPassengers + "\n" +
+                            "recDevices = " + recDevices + "\n" +
+                            "additionalSkills = " + additionalSkills + "\n" +
+                            "password = " + password + "\n" +
+                            "repeatPassword = " + repeatPassword + "\n" +
+                            "myPhotoPath = " + myPhotoPath + "\n" +
+                            "photoBikePath = " + photoBikePath + "\n" +
+                            "photo1Path = " + photo1Path + "\n" +
+                            "photo2Path = " + photo2Path + "\n" +
+                            "photo3Path = " + photo3Path + "\n" +
+                            "photo4Path = " + photo4Path + "\n" +
+                            "photo5Path = " + photo5Path + "\n" +
+                            "photo6Path = " + photo6Path + "\n" +
+                            "photo7Path = " + photo7Path + "\n" +
+                            "photo8Path = " + photo8Path + "\n" +
+                            "photo9Path = " + photo9Path + "\n" +
+                            "photo10Path = " + photo10Path + "\n");
 
 
-                registerPresenter.registerDriver(myPhotoPath, photoBikePath, name, birthday, phone, email,
-                        address, subway, experience, motoMark, motoModel, motoYear, motoColor, regNum,
-                        insurance, trunk, Integer.valueOf(reqPassengers), recDevices, additionalSkills, password, repeatPassword, photo1Path,
-                        photo2Path, photo3Path, photo4Path, photo5Path, photo6Path, photo7Path, photo8Path, photo9Path, photo10Path);
-            } else {
-                Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
-            }
+                    registerPresenter.registerDriver(myPhotoPath, photoBikePath, name, birthday, phone, email,
+                            address, subway, experience, motoMark, motoModel, motoYear, motoColor, regNum,
+                            insurance, trunk, Integer.valueOf(reqPassengers), recDevices, additionalSkills, password, repeatPassword, photo1Path,
+                            photo2Path, photo3Path, photo4Path, photo5Path, photo6Path, photo7Path, photo8Path, photo9Path, photo10Path);
+                } else {
+                    Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+                }
+            } else
+                Toast.makeText(this, "Не все картинки еще загружены", Toast.LENGTH_SHORT).show();
 
         } else {
             Toast.makeText(this, "Заполните пожалуйста все поля", Toast.LENGTH_SHORT).show();
