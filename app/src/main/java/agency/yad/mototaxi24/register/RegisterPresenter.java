@@ -47,6 +47,9 @@ public class RegisterPresenter implements Presenter<RegisterView> {
                                String photo4, String photo5, String photo6, String photo7,
                                String photo8, String photo9, String photo10) {
 
+
+        view.showLoading(true);
+
         getObservable(photo, photo_bike, fio, birthday,
                 phone, email, address, metro,
                 experience_year, bike_model, bike_type, bike_year,
@@ -126,12 +129,15 @@ public class RegisterPresenter implements Presenter<RegisterView> {
             @Override
             public void onNext(BaseResponse baseResponse) {
                 Log.d(TAG, "onNext: ");
+
+                view.showLoading(false);
                 view.tryRegister(baseResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }
@@ -148,12 +154,14 @@ public class RegisterPresenter implements Presenter<RegisterView> {
             @Override
             public void onNext(PhotoResponse baseResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.tryUploadPhoto(baseResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }

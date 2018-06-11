@@ -1,12 +1,17 @@
 package agency.yad.mototaxi24.register;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,15 +23,20 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
+import agency.yad.mototaxi24.custom.MyDatePickerFragment;
 import agency.yad.mototaxi24.model.response.BaseResponse;
 import agency.yad.mototaxi24.model.response.PhotoResponse;
 import agency.yad.mototaxi24.network.NetworkClient;
 import agency.yad.mototaxi24.network.NetworkInterface;
-import agency.yad.mototaxi24.custom.MyDatePickerFragment;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -85,16 +95,16 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
     private String myPhotoPath = "";
     private String photoBikePath = "";
-    String photo1Path = "";
-    String photo2Path = "";
-    String photo3Path = "";
-    String photo4Path = "";
-    String photo5Path = "";
-    String photo6Path = "";
-    String photo7Path = "";
-    String photo8Path = "";
-    String photo9Path = "";
-    String photo10Path = "";
+    String photo1Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo2Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo3Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo4Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo5Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo6Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo7Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo8Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo9Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
+    String photo10Path = "public/photos/6rgBDFiQeOllmXw40NwsIoyMs8U9JNycT0TzRW8R.png";
 
 
     @Override
@@ -213,6 +223,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
         registerPresenter = new RegisterPresenter();
         registerPresenter.attachView(this);
 
+        verifyStoragePermissions(this);
+
     }
 
 
@@ -239,45 +251,96 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
             file = new File(filePath);
 
+            showLoading(true);
+            Picasso.get()
+                    .load(file)
+                    .centerCrop()
+                    .fit()
+                    .into(imageView, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            showLoading(false);
+                            Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                            byte[] bitmapdata = bos.toByteArray();
 
-            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
+                            //write the bytes in file
+                            FileOutputStream fos = null;
+                            try {
+                                fos = new FileOutputStream(file);
+                                fos.write(bitmapdata);
+                                fos.flush();
+                                fos.close();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
-            retrofit2.Call<PhotoResponse> req =
-                    NetworkClient
-                            .getRetrofit()
-                            .create(NetworkInterface.class)
-                            .postImage(body);
 
-            Picasso.get().load(file).into(imageView);
+                            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+                            MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
 
-            req.enqueue(new Callback<PhotoResponse>() {
-                @Override
-                public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
-                    Log.d("TAG", "onResponse: " + response.body());
-                    switch (response.body().getCode()) {
-                        case 1: {
-                            // ERROR
-                            Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        case 0: {
-                            savePhotoPath(imageViewId, response.body().getPhoto());
+                            retrofit2.Call<PhotoResponse> req =
+                                    NetworkClient
+                                            .getRetrofit()
+                                            .create(NetworkInterface.class)
+                                            .postImage(body);
+
+                            showLoading(true);
+
+
+                            req.enqueue(new Callback<PhotoResponse>() {
+                                @Override
+                                public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
+                                    Log.d("TAG", "onResponse: " + response.body());
+                                    switch (response.body().getCode()) {
+                                        case 1: {
+                                            // ERROR
+                                            showLoading(false);
+                                            Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото", Toast.LENGTH_SHORT).show();
+                                            Picasso.get()
+                                                    .load(R.drawable.placeholder)
+                                                    .into(imageView);
+                                            break;
+                                        }
+                                        case 0: {
+                                            showLoading(false);
+                                            savePhotoPath(imageViewId, response.body().getPhoto());
 
 //                            imageView.setImageBitmap(bitmap[0]);
-                            break;
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<PhotoResponse> call, Throwable t) {
+                                    showLoading(false);
+                                    Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото, проблема с интернет соединением", Toast.LENGTH_SHORT).show();
+                                    Picasso.get()
+                                            .load(R.drawable.placeholder)
+                                            .into(imageView);
+                                    Log.d("TAG", "onFailure: " + t.getMessage() + "\n" + Arrays.toString(t.getStackTrace()));
+                                    t.printStackTrace();
+                                }
+                            });
                         }
-                    }
 
-                }
+                        @Override
+                        public void onError(Exception e) {
+                            Log.d("TAG", "onError: " + e.getMessage());
 
-                @Override
-                public void onFailure(Call<PhotoResponse> call, Throwable t) {
-                    Log.d("TAG", "onFailure: ");
-                    Toast.makeText(RegisterActivity.this, "Не удалось загрузить фото", Toast.LENGTH_SHORT).show();
-                    t.printStackTrace();
-                }
-            });
+                            showLoading(false);
+                            Picasso.get()
+                                    .load(R.drawable.placeholder)
+                                    .into(imageView);
+                        }
+                    });
+
+
 
         }
 
@@ -462,9 +525,32 @@ public class RegisterActivity extends BaseActivity implements RegisterView, View
 
     }
 
-    @Override
-    public void showLoading(boolean show) {
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 

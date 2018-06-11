@@ -103,4 +103,9 @@ public class DispatcherMainActivity extends BaseActivity implements View.OnClick
             }
         }
     }
+
+    @Override
+    public void showError() {
+
+    }
 }

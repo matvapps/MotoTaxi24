@@ -43,6 +43,7 @@ public class NewOrderPresenter implements Presenter<NewOrderView> {
                             String additionalInfo,
                             Integer orderDateTime) {
 
+        view.showLoading(true);
         getObservable(token, name, phone, time, address,
                 bikeType, weight, price, clientsAmount,
                 additionalInfo, orderDateTime).subscribeWith(getObserver());
@@ -74,12 +75,14 @@ public class NewOrderPresenter implements Presenter<NewOrderView> {
             @Override
             public void onNext(BaseResponse authResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.onReceiveResponse(authResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }

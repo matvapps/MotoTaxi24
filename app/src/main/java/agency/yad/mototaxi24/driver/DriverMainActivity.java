@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.base.BaseActivity;
-import agency.yad.mototaxi24.dispatcher.DispatcherMainActivity;
 import agency.yad.mototaxi24.main.MainActivity;
 import agency.yad.mototaxi24.orderlist.OrderListActivity;
 
@@ -84,5 +83,10 @@ public class DriverMainActivity extends BaseActivity implements View.OnClickList
                 break;
             }
         }
+    }
+
+    @Override
+    public void showError() {
+
     }
 }

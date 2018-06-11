@@ -33,20 +33,27 @@ public class OrderListPresenter implements Presenter<OrderListView> {
     }
 
 
+    @SuppressLint("CheckResult")
     public void deleteOrder(int id) {
+        view.showLoading(true);
         getDeleteObservable(id).subscribeWith(getDeleteObserver());
     }
 
+    @SuppressLint("CheckResult")
     public void takeOrder(int id, String token) {
+        view.showLoading(true);
         getTakeOrderObservable(id, token).subscribeWith(getTakeOrderObserver());
     }
 
+    @SuppressLint("CheckResult")
     public void doneOrder(int id) {
+        view.showLoading(true);
         getOrderDoneObservable(id).subscribeWith(getOrderDoneObserver());
     }
 
     @SuppressLint("CheckResult")
     public void getOrders(String ordersType, @Nullable String token) {
+        view.showLoading(true);
         getObservable(ordersType, token).subscribeWith(getObserver());
     }
 
@@ -105,12 +112,14 @@ public class OrderListPresenter implements Presenter<OrderListView> {
             @Override
             public void onNext(OrdersResponse orderResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.getOrders(orderResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }
@@ -126,12 +135,14 @@ public class OrderListPresenter implements Presenter<OrderListView> {
             @Override
             public void onNext(BaseResponse baseResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.onTryDeleteOrder(baseResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }
@@ -147,12 +158,14 @@ public class OrderListPresenter implements Presenter<OrderListView> {
             @Override
             public void onNext(BaseResponse baseResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.onTryTakeOrder(baseResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }
@@ -168,12 +181,14 @@ public class OrderListPresenter implements Presenter<OrderListView> {
             @Override
             public void onNext(BaseResponse baseResponse) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.onTryDoneOrder(baseResponse);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }

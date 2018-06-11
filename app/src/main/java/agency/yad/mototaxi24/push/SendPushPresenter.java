@@ -22,9 +22,9 @@ public class SendPushPresenter implements Presenter<SendPushView> {
     private SendPushView view;
 
 
-
     @SuppressLint("CheckResult")
     public void sendPush(String message) {
+        view.showLoading(true);
         getObservable(message).subscribeWith(getObserver());
     }
 
@@ -41,12 +41,14 @@ public class SendPushPresenter implements Presenter<SendPushView> {
             @Override
             public void onNext(BaseResponse response) {
                 Log.d(TAG, "onNext: ");
+                view.showLoading(false);
                 view.onSendPush(response);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d(TAG, "onError: " + e);
+                view.showLoading(false);
                 e.printStackTrace();
                 view.showError();
             }
@@ -57,7 +59,6 @@ public class SendPushPresenter implements Presenter<SendPushView> {
             }
         };
     }
-
 
 
     @Override

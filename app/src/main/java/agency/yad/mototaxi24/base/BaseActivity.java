@@ -1,5 +1,7 @@
 package agency.yad.mototaxi24.base;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.AppBarLayout;
@@ -15,7 +17,7 @@ import android.widget.TextView;
 import agency.yad.mototaxi24.R;
 import agency.yad.mototaxi24.data.preferences.KeyValueStorage;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements  BaseView{
 
 
     protected FrameLayout container;
@@ -24,6 +26,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ImageButton arrowBack;
     protected AppBarLayout appBarLayout;
     protected CoordinatorLayout coordinatorLayout;
+    protected View loading;
+
+    protected ProgressDialog progressDialog;
+    protected AlertDialog dialog;
 
 
     protected KeyValueStorage keyValueStorage;
@@ -78,6 +84,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         toolbarTitle = findViewById(R.id.toolbar_title);
         arrowBack = findViewById(R.id.arrow_back);
 
+        loading = findViewById(R.id.loading);
+
         appBarLayout = findViewById(R.id.appbar);
         coordinatorLayout = findViewById(R.id.main_content);
 
@@ -94,8 +102,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else
             arrowBack.setVisibility(View.GONE);
 
+
         setContentFrame();
         initViews();
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            loading.setVisibility(View.VISIBLE);
+        } else {
+            loading.setVisibility(View.GONE);
+        }
     }
 
     protected void setContentFrame() {
